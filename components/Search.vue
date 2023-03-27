@@ -21,7 +21,7 @@
             size="x-large"
             variant="outlined"
             color="#0f0"
-            class="mr-8 mt-3 pa-3"
+            class="mr-8 mt-3 px-2 py-3 text-h6"
         >
             <template
                 v-slot:prepend
@@ -32,32 +32,21 @@
                 Vender
             </template>
         </v-btn>
-        <!-- <v-btn
-            elevation="8"
-            size="x-large"
-            variant="outlined"
-            color="#28B4FA"
-            class="mr-8 mt-3 pa-3"
-        >
-            <template
-                v-slot:prepend
-            >
-                <v-icon>
-                    mdi-plus-thick
-                </v-icon>
-                Cadastrar Produto
-            </template>
-        </v-btn> -->
-        <register />
+        <Register :estoqueLocal="estoqueLocal" :dados="dados" :salvarLocal="salvarLocal"/>
     </v-row>
 </template>
 <script>
+import Register from './Register.vue'
   export default {
     name: 'SearchBar',
+    props: [ 'estoqueLocal','dados', 'salvarLocal'],
     data: () => ({
         loaded: false,
         loading: false,
     }),
+    components: {
+        Register
+    },
     methods: {
       onClick () {
         this.loading = true
@@ -67,11 +56,11 @@
           this.loaded = true
         }, 2000)
       },
-    },
+    }
   }
 </script>
 <style scoped>
     .v-card-text {
-        max-width: 70% !important;
+        max-width: 80% !important;
     }
 </style>

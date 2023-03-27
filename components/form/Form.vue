@@ -9,12 +9,12 @@
             Insira a Categoria
         </p>
         <v-text-field
-        v-model="category"
-        :rules="categoryRules"
-        :counter=" 10"
-        label="Nome da categoria"
-        required
-        id="inputCategory"
+            v-model="category"
+            :rules="categoryRules"
+            :counter=" 10"
+            label="Nome da categoria"
+            required
+            id="inputCategory"
         >
         </v-text-field>
     </v-col>
@@ -42,11 +42,11 @@
             Coloque a quantidade
         </p>
         <v-select
-        v-model="quantity"
-        :items="items"
-        :rules="[v => !!v || 'Quantiade necessária.']"
-        label="120"
-        required
+            v-model="quantity"
+            :items="items"
+            :rules="[v => !!v || 'Quantiade necessária.']"
+            label="120"
+            required
         >
         </v-select>
     </v-col>
@@ -60,8 +60,8 @@
         <v-textarea
             bg-color="grey-lighten-2"
             color="#F8F25F"
-            v-model="quantity"
-            :rules="quantityRules"
+            v-model="description"
+            :rules="descriptionRules"
             :counter="10"
             rows="2"
             label="Descrição resumida"
@@ -69,10 +69,31 @@
         >
         </v-textarea>
     </v-col>
+    <!--BTN-->
+    <v-col>
+        <v-btn
+            elevation="8"
+            size="x-large"
+            color="#28B4FA"
+            class="w-100 mr-8 mt-3 pa-3"
+            @click="register()"
+
+        >
+            <template
+                v-slot:prepend
+        >
+                <v-icon>
+                    mdi-plus-thick
+                </v-icon>
+                Cadastrar Produto
+            </template>
+        </v-btn>
+    </v-col>
 </template>
 <script>
     export default {
         name: 'Form',
+        props: ['estoqueLocal', 'dados', 'salvarLocal'],
         data: () => ({
             //category
             valid: false,
@@ -97,8 +118,9 @@
             ],
             //quantity
             valid: true,
+            quantity: '',
             quantityRules: [
-                v => !!v || 'Quantidade NEcessária.',
+                v => !!v || 'Quantidade Necessária.',
             ],
             select: null,
             items: [
@@ -113,8 +135,8 @@
             ],
             //Descritption
             valid: false,
-            quantity: '',
-            quantityRules: [
+            description: '',
+            descriptionRules: [
                 value => {
                     if (value) return true
                         return 'Descrição Obrigatória.'
@@ -125,5 +147,24 @@
                 },
             ]
         }),
+        methods: {
+            register() {
+                console.log(this.estoqueLocal);
+                if(this.category != `` && this.nome != `` && this.quantity != `` && this.description != ``) {
+                    this.estoqueLocal.push
+                    ({
+                        categoria: this.category,
+                        nome: this.nameProduct,
+                        quantidadeKg: this.quantity,
+                    })
+                    // if(this.dados === `false`) {
+                    //     this.salvarLocal()
+                    // }
+                
+                return
+                }
+                console.log(this.dados)
+            }
+        }
     }
 </script>

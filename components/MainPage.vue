@@ -108,7 +108,7 @@
             <v-row
                 class="d-flex justify-center"
             >
-                <Search />
+                <Search :estoqueLocal="estoqueLocal" :dados="dados" :salvarLocal="salvarLocal" />
             </v-row>
         </v-container>
         <!--Table-->
@@ -145,6 +145,8 @@
     </v-container>
 </template>
 <script>
+import TableStock from './TableStock.vue'
+import Search from './Search.vue'
     export default {
         name: 'MainPage',
         data() {
@@ -171,7 +173,11 @@
                 quantidadeKG: 20,
                 pacotes: 4
                 }],
+                dados: false
             }
+        },
+        components:{ 
+            TableStock, Search
         },
         methods: {
             escolhaDados() {
@@ -181,6 +187,7 @@
                     console.log(`Com dados locais`)
                     if(localStorage.length === 0) {
                         this.salvarLocal()
+                        dados = true
                     } else {
                         this.estoqueLocal = JSON.parse(localStorage.getItem(`estoque`))
                     }
@@ -191,6 +198,7 @@
                 console.log(`chamou LOCAL STORAGE`);
                 localStorage.setItem(`estoque`,JSON.stringify(this.estoqueLocal))
                 this.estoqueLocal = JSON.parse(localStorage.getItem(`estoque`))
+                alert(`here`)
             }
         }
     }
@@ -220,6 +228,12 @@
         }
         #inicio {
             max-width: 200px !important;
+        }
+        .rowDados {
+            width: 90vw !important;
+        }
+        #escolha {
+           margin: auto !important;
         }
 }
 </style>
