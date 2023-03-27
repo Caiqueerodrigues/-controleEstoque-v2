@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+main {
+    background: linear-gradient(#460009, #660103, #460009);
+    color: #F8F25F;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* :root {
+    --color1: #221000;
+    --color2: #860B07;
+    --golden1: #825200;
+    --golden2: #F8F25F;
+    --golden3: #b98f05;
+    --golden4:  #c79746;
+    --golden5: #F8F25F;
+} */
