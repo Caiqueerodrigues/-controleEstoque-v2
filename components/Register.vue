@@ -1,5 +1,5 @@
 <template>
-    <v-layout class="d-flex">
+    <v-layout class="d-flex mx-0">
         <v-navigation-drawer
             v-model="drawer"
             temporary
@@ -14,11 +14,18 @@
                     >
                         Cadastrar Produto
                     </h1>
+                    <v-icon
+                        class="float-right mt-n12"
+                        id="close"
+                        @click="closeDrawer()"
+                    >
+                        mdi-alpha-x-box-outline
+                    </v-icon>
                 </v-list-item>
             </template>
             <v-list>
                 <v-list-item>
-                    <Form  :estoqueLocal="estoqueLocal" :dados="dados" :salvarLocal="salvarLocal"/>
+                    <Form  :estoqueLocal="estoqueLocal" :dados="dados" :salvarLocal="salvarLocal" :drawer="drawer"/>
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
@@ -30,7 +37,7 @@
                 size="x-large"
                 variant="outlined"
                 color="#28B4FA"
-                class="px-2 text-h6"
+                class="px-2 text-h6 mx-0"
             >
                 <template
                     v-slot:prepend
@@ -45,22 +52,21 @@
     </v-layout>
 </template>
 <script>
-import Form from './form/Form.vue'
   export default {
     name: 'RegisterProduct',
     props: ['estoqueLocal', 'dados', 'salvarLocal'],
     data () {
       return {
-        drawer: null,
+        drawer: false,
       }
     },
-    components: {
-        Form
+    methods: {
+        closeDrawer() {
+            this.drawer = !this.drawer
+        }
     }
   }
 </script>
 <style scoped>
-    @media(max-width: 424px) {
-        
-    }
+    
 </style>

@@ -1,10 +1,9 @@
 <template>
     <v-col
-        cols="12"
         md="40"
     >
         <p
-            class="font-weight-black pb-3"
+            class="font-weight-black pb-2"
         >
             Insira a Categoria
         </p>
@@ -21,7 +20,7 @@
     <!--name-->
     <v-col>
         <p
-            class="font-weight-black pb-3"
+            class="font-weight-black pb-2"
         >
             Insira o nome do Produto
         </p>
@@ -34,10 +33,9 @@
     </v-col>
      <!--quantity-->
     <v-col
-        cols="8"
     >
         <p
-            class="font-weight-black pb-3"
+            class="font-weight-black pb-2"
         >
             Coloque a quantidade
         </p>
@@ -53,7 +51,7 @@
     <!--Description-->
     <v-col>
         <p
-            class="font-weight-black pb-3"
+            class="font-weight-black pb-2"
         >
             Faça uma breve Descrição
         </p>
@@ -75,7 +73,7 @@
             elevation="8"
             size="x-large"
             color="#28B4FA"
-            class="w-100 mr-8 mt-3 pa-3"
+            class="w-100 mr-8 mt-3 pa-2"
             @click="register()"
 
         >
@@ -93,7 +91,7 @@
 <script>
     export default {
         name: 'Form',
-        props: ['estoqueLocal', 'dados', 'salvarLocal'],
+        props: ['estoqueLocal', 'dados', 'salvarLocal', 'drawer'],
         data: () => ({
             //category
             valid: false,
@@ -149,21 +147,13 @@
         }),
         methods: {
             register() {
-                console.log(this.estoqueLocal);
-                if(this.category != `` && this.nome != `` && this.quantity != `` && this.description != ``) {
-                    this.estoqueLocal.push
-                    ({
-                        categoria: this.category,
-                        nome: this.nameProduct,
-                        quantidadeKg: this.quantity,
-                    })
-                    // if(this.dados === `false`) {
-                    //     this.salvarLocal()
-                    // }
-                
-                return
+                if(this.categoryRules[0] = true ) { 
+                    console.log(`Cadastrou`)
+                    if(this.dados === true) {
+                        this.salvarLocal()
+                    }
+                    return
                 }
-                console.log(this.dados)
             }
         }
     }

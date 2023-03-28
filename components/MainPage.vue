@@ -108,7 +108,7 @@
             <v-row
                 class="d-flex justify-center"
             >
-                <Search :estoqueLocal="estoqueLocal" :dados="dados" :salvarLocal="salvarLocal" />
+                <Search :estoqueLocal="estoqueLocal" :dados="dadosAtuais" :salvarLocal="salvarLocal" />
             </v-row>
         </v-container>
         <!--Table-->
@@ -145,63 +145,66 @@
     </v-container>
 </template>
 <script>
-import TableStock from './TableStock.vue'
-import Search from './Search.vue'
-    export default {
-        name: 'MainPage',
-        data() {
-            return {
-                checked: true,
-                estoqueLocal: [{
-                nome: `Exemplo de ração`,
-                categoria: `Ração`,
-                quantidadeKgCadaPacote: 15,
-                quantidadeKG: 30,
-                pacotes: 2
-            },
-            {
-                nome: `Luck dog`,
-                categoria: `Ração`,
-                quantidadeKgCadaPacote: 10,
-                quantidadeKG: 40,
-                pacotes: 4
-            },
-            {
-                nome: `Mix`,
-                categoria: `Ração`,
-                quantidadeKgCadaPacote: 5,
-                quantidadeKG: 20,
-                pacotes: 4
-                }],
-                dados: false
-            }
+export default {
+    name: 'MainPage',
+    data() {
+        return {
+            checked: true,
+            estoqueLocal: [{
+            nome: `Exemplo de ração`,
+            categoria: `Ração`,
+            quantidadeKgCadaPacote: 15,
+            quantidadeKG: 30,
+            pacotes: 2
         },
-        components:{ 
-            TableStock, Search
+        {
+            nome: `Luck dog`,
+            categoria: `Ração`,
+            quantidadeKgCadaPacote: 10,
+            quantidadeKG: 40,
+            pacotes: 4
         },
-        methods: {
-            escolhaDados() {
-                if(!this.checked) {
-                    console.log('Sem dados locais')
-                } else {
-                    console.log(`Com dados locais`)
-                    if(localStorage.length === 0) {
-                        this.salvarLocal()
-                        dados = true
-                    } else {
-                        this.estoqueLocal = JSON.parse(localStorage.getItem(`estoque`))
-                    }
-                }
-            },
-
-            salvarLocal() {
-                console.log(`chamou LOCAL STORAGE`);
-                localStorage.setItem(`estoque`,JSON.stringify(this.estoqueLocal))
-                this.estoqueLocal = JSON.parse(localStorage.getItem(`estoque`))
-                alert(`here`)
-            }
+        {
+            nome: `Mix`,
+            categoria: `Ração`,
+            quantidadeKgCadaPacote: 5,
+            quantidadeKG: 20,
+            pacotes: 4
+            }],
+            dados: false
         }
-    }
+    },
+    methods: {
+        escolhaDados() {
+            alert(this.dados)
+            if(!this.checked) {
+                console.log('Sem dados locais')
+                this.dados = false 
+            } else {
+                console.log(`Com dados locais`)
+                this.dados = true
+                if(localStorage.length === 0) {
+                    this.salvarLocal()
+                    return
+                } else {
+                    this.estoqueLocal = JSON.parse(localStorage.getItem(`estoque`))
+                }
+            }
+        },
+
+        salvarLocal() {
+            console.log(`chamou LOCAL STORAGE`);
+            localStorage.setItem(`estoque`,JSON.stringify(this.estoqueLocal))
+            this.estoqueLocal = JSON.parse(localStorage.getItem(`estoque`))
+        }
+    },
+    computed: {
+        dadosAtuais() { 
+            return this.dados
+        }
+    } 
+}
+
 </script>
 <style scoped>
     #main {

@@ -1,8 +1,7 @@
 <template>
-    <v-row
-    >
+    <v-row>
         <v-card-text
-            class="ml-16 mr-5 mt-0"
+            class="ml-10 mt-0 w-50"
         >
             <v-text-field
                 :loading="loading"
@@ -29,14 +28,14 @@
                 <v-icon>
                     mdi-currency-usd
                 </v-icon>
-                Vender
+                Vender 
             </template>
         </v-btn>
         <Register :estoqueLocal="estoqueLocal" :dados="dados" :salvarLocal="salvarLocal"/>
+        
     </v-row>
 </template>
 <script>
-import Register from './Register.vue'
   export default {
     name: 'SearchBar',
     props: [ 'estoqueLocal','dados', 'salvarLocal'],
@@ -44,9 +43,6 @@ import Register from './Register.vue'
         loaded: false,
         loading: false,
     }),
-    components: {
-        Register
-    },
     methods: {
       onClick () {
         this.loading = true
