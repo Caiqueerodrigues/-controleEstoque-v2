@@ -4,6 +4,7 @@
             class="ml-10 mt-0 w-50"
         >
             <v-text-field
+                v-model="searchInput"
                 :loading="loading"
                 density="compact"
                 variant="solo"
@@ -11,47 +12,55 @@
                 append-inner-icon="mdi-magnify"
                 single-line
                 hide-details
-                @click:append-inner="onClick"
+                @input="search()"
             >
             </v-text-field>
-        </v-card-text>
-        <v-btn
-            elevation="8"
-            size="x-large"
-            variant="outlined"
-            color="#0f0"
-            class="mr-8 mt-3 px-2 py-3 text-h6"
-        >
-            <template
-                v-slot:prepend
-            >
-                <v-icon>
-                    mdi-currency-usd
-                </v-icon>
-                Vender 
-            </template>
-        </v-btn>
-        <Register :estoqueLocal="estoqueLocal" :dados="dados" :salvarLocal="salvarLocal"/>
-        
+        </v-card-text>        
     </v-row>
 </template>
 <script>
   export default {
     name: 'SearchBar',
+    searchInput: '',
     props: [ 'estoqueLocal','dados', 'salvarLocal'],
     data: () => ({
         loaded: false,
         loading: false,
     }),
     methods: {
-      onClick () {
-        this.loading = true
+    //   onClick () {
+    //     this.loading = true
 
-        setTimeout(() => {
-          this.loading = false
-          this.loaded = true
-        }, 2000)
-      },
+    //     setTimeout(() => {
+    //       this.loading = false
+    //       this.loaded = true
+    //     }, 2000)
+    //   },
+
+      search() {
+        if(this.searchInput != ``) {
+            this.loading = true
+
+            setTimeout(() => {
+                this.loading = false
+                this.loaded = true
+            }, 1000 * 2)
+            for(let item in this.estoqueLocal) {
+                let itemNome = this.estoqueLocal[item].nome
+                let nomeMinusc = itemNome.toLowerCase().trim()
+                let textInput = this.searchInput.toLowerCase().trim()
+                if(!nomeMinusc.includes(textInput)) {
+                    this.estoqueLocal[item].show = false
+                } else {
+                    this.estoqueLocal[item].show = true
+                }
+            }
+        } else {
+            for(let item in this.estoqueLocal) {
+                this.estoqueLocal[item].show = true
+            }
+        }
+      }
     }
   }
 </script>

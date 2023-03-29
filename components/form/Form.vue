@@ -3,7 +3,7 @@
         md="40"
     >
         <p
-            class="font-weight-black pb-2"
+            class="font-weight-black"
         >
             Insira a Categoria
         </p>
@@ -20,7 +20,7 @@
     <!--name-->
     <v-col>
         <p
-            class="font-weight-black pb-2"
+            class="font-weight-black"
         >
             Insira o nome do Produto
         </p>
@@ -35,9 +35,9 @@
     <v-col
     >
         <p
-            class="font-weight-black pb-2"
+            class="font-weight-black"
         >
-            Coloque a quantidade
+            Coloque a quantidade (Kg)
         </p>
         <v-select
             v-model="quantity"
@@ -51,7 +51,7 @@
     <!--Description-->
     <v-col>
         <p
-            class="font-weight-black pb-2"
+            class="font-weight-black"
         >
             Faça uma breve Descrição
         </p>
@@ -95,7 +95,7 @@
         data: () => ({
             //category
             valid: false,
-            category: '',
+            category: ''.toLowerCase(),
             categoryRules: [
             value => {
             if (value) return true
@@ -103,11 +103,11 @@
             },
             value => {
                 if (value?.length <= 10) return true
-                  return 'Nome informado muito longo'
+                  return 'Categoria informada muito longa'
                 },
             ],
             //name
-            nameProduct: '',
+            nameProduct: ''.toLowerCase(),
             nameProductRules: [
                 value => {
                     if (value?.length > 5) return true
@@ -122,39 +122,58 @@
             ],
             select: null,
             items: [
-                '10 Kg',
-                '15 Kg',
-                '20 Kg',
-                '25 Kg',
-                '30 Kg',
-                '40 Kg',
-                '50 Kg',
-                '100 Kg'
+                '10',
+                '15',
+                '20',
+                '25',
+                '30',
+                '40',
+                '50',
+                '100'
             ],
             //Descritption
             valid: false,
-            description: '',
+            description: ''.toLowerCase(),
             descriptionRules: [
                 value => {
                     if (value) return true
                         return 'Descrição Obrigatória.'
                     },
                     value => {
-                    if (value?.length <= 10) return true
-                        return 'Minimo de 10 caracateres.'
+                    if (value?.length >= 8) return true
+                        return 'Minimo de 8 caracateres.'
                 },
             ]
         }),
         methods: {
             register() {
-                if(this.categoryRules[0] = true ) { 
-                    console.log(`Cadastrou`)
-                    if(this.dados === true) {
-                        this.salvarLocal()
-                    }
+                const indicePesquisa = this.estoqueLocal.findIndex(produto => produto.nome.toLowerCase().trim() === this.nameProduct)
+                if (indicePesquisa === 1 || indicePesquisa === undefined) {
+                    alert(`[ERRO] Produto já existente no estoque`)
+                    this.drawer()
                     return
+                }   
+                if(this.category != `` && this.name != ``  && this.quantity != `` && this.description!= `` ) {
+                    this.estoqueLocal.push({
+                        categoria: this.category,
+                        nome: this.nameProduct,
+                        quantidadeKg: Number(this.quantity),
+                        descricao: this.description,
+                        show: true,
+                    })
+                    console.log(this.estoqueLocal)
+                    console.log(this.estoqueLocal[3].quantidadeKg)
                 }
+                if(this.dados === true) {
+                    this.salvarLocal()
+                }
+                this.drawer()
             }
         }
     }
 </script>
+<style scoped>
+    .v-col{
+        padding: 0;
+    }
+</style>

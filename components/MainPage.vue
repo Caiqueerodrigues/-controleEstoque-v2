@@ -4,7 +4,7 @@
         id="main"
     >
         <v-row 
-            class="d-flex pt-3 justify-center"
+            class="d-flex pt-3 pb-7 justify-center"
         >
             <v-icon>
                 mdi-paw
@@ -23,32 +23,11 @@
             <v-icon>
                 mdi-paw
             </v-icon>
-        </v-row>
-        <!--Linha do meio-->
-        <v-row 
-            class="d-flex justify-center ma-0"
-        >
-            <!-- <v-icon>
-                mdi-paw
-            </v-icon>
-            <v-icon
-                class="mt-6 mx-4"
+            <h1
+                class="mx-4"
             >
-                mdi-paw
-            </v-icon> -->
-            <h1>e</h1>
-            <!-- <v-icon
-                class="mt-6 mx-4"
-            >
-                mdi-paw
-            </v-icon>
-            <v-icon>
-                mdi-paw
-            </v-icon> -->
-        </v-row>
-        <v-row 
-            class="ma-0 d-flex justify-center pb-4"
-        >
+                e
+            </h1>
             <v-icon>
                 mdi-paw
             </v-icon>
@@ -57,7 +36,9 @@
             >
                 mdi-paw
             </v-icon>
-            <h1>Pet Shop</h1>
+            <h1>
+                Pet Shop
+            </h1>
             <v-icon
                 class="mt-6 mx-4"
             >
@@ -74,7 +55,7 @@
         >
             <v-container 
                 id="escolha"
-                class="d-flex pt-0 justify-center"
+                class="d-flex pa-0 justify-center"
             >
                 <v-row 
                     class="justify-center mt-5 rowDados"
@@ -104,16 +85,19 @@
         <!--Search Bar-->
         <v-container
             fluid
+            class="d-flex justify-space-between pa-0"
         >
-            <v-row
-                class="d-flex justify-center"
-            >
+            <v-col>
                 <Search :estoqueLocal="estoqueLocal" :dados="dadosAtuais" :salvarLocal="salvarLocal" />
-            </v-row>
+            </v-col>
+            <v-col class="d-flex">
+                <Sale />
+                <Register :estoqueLocal="estoqueLocal" :dados="dadosAtuais" :salvarLocal="salvarLocal"/>
+            </v-col>
         </v-container>
         <!--Table-->
         <v-row>
-            <TableStock />
+            <TableStock :estoqueLocal="estoqueLocal"/>
         </v-row>
     </v-container>
     <!--footer-->
@@ -151,32 +135,34 @@ export default {
         return {
             checked: true,
             estoqueLocal: [{
-            nome: `Exemplo de ração`,
-            categoria: `Ração`,
-            quantidadeKgCadaPacote: 15,
-            quantidadeKG: 30,
-            pacotes: 2
-        },
-        {
-            nome: `Luck dog`,
-            categoria: `Ração`,
-            quantidadeKgCadaPacote: 10,
-            quantidadeKG: 40,
-            pacotes: 4
-        },
-        {
-            nome: `Mix`,
-            categoria: `Ração`,
-            quantidadeKgCadaPacote: 5,
-            quantidadeKG: 20,
-            pacotes: 4
+                nome: `exemplo de ração`,
+                categoria: `ração`,
+                quantidadeKG: 30,
+                descricao: `sem corantes`,
+                show: true,
+                modificado: 25/12/2022,
+            },
+            {
+                nome: `luck dog`,
+                categoria: `ração`,
+                quantidadeKG: 40,
+                descricao: `sabor carne`,
+                show: true,
+                modificado: 20/03/2023,
+            },
+            {
+                nome: `mix`,
+                categoria: `ração`,
+                quantidadeKG: 20,
+                descricao: `todos sabores`,
+                show: true,
+                modificado: 28/03/2023,
             }],
             dados: false
         }
     },
     methods: {
         escolhaDados() {
-            alert(this.dados)
             if(!this.checked) {
                 console.log('Sem dados locais')
                 this.dados = false 
