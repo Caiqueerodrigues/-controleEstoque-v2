@@ -129,6 +129,7 @@
     </v-container>
 </template>
 <script>
+
 export default {
     name: 'MainPage',
     data() {
@@ -140,7 +141,7 @@ export default {
                 quantidadeKG: 30,
                 descricao: `sem corantes`,
                 show: true,
-                modificado: 25/12/2022,
+                modificado: '25/12/2022',
             },
             {
                 nome: `luck dog`,
@@ -148,7 +149,23 @@ export default {
                 quantidadeKG: 40,
                 descricao: `sabor carne`,
                 show: true,
-                modificado: 20/03/2023,
+                modificado: '20/03/2023',
+            },
+            {
+                nome: `osso defumado`,
+                categoria: `alimento`,
+                quantidadeKG: 10,
+                descricao: `100% natural`,
+                show: true,
+                modificado: '27/02/2023',
+            },
+            {
+                nome: `bolinha`,
+                categoria: `brinquedos`,
+                quantidadeKG: 17,
+                descricao: `borracha sintética`,
+                show: true,
+                modificado: '12/03/2023',
             },
             {
                 nome: `mix`,
@@ -156,7 +173,7 @@ export default {
                 quantidadeKG: 20,
                 descricao: `todos sabores`,
                 show: true,
-                modificado: 28/03/2023,
+                modificado: '28/03/2023',
             }],
             dados: false
         }

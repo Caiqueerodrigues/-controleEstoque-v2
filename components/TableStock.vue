@@ -5,19 +5,29 @@
   >
     <thead>
       <tr>
-        <th class="text-left">
+        <th 
+          class="text-left"
+        >
           Categoria
         </th>
-        <th class="text-left">
+        <th 
+          class="text-left"
+        >
           Nome
         </th>
-        <th>
+        <th 
+          class="text-left"
+        >
           Quantidade
         </th>
-        <th>
+        <th
+          class="text-left"
+        >
           Descrição
         </th>
-        <th>
+        <th
+          class="text-left"
+        >
           Atualizada em
         </th>
       </tr>
@@ -25,7 +35,7 @@
     <tbody>
       <tr
         v-for="(item, index) in estoqueLocal"
-        :key="index" v-show="item.show"
+        :key="index"  v-show="item.show"
       >
         <td>
           {{ item.categoria }}
@@ -34,10 +44,13 @@
           {{ item.nome }}
         </td>
         <td>
-          {{ item.quantidadeKG }} Kg
+          {{ item.quantidadeKG }} Kg/Un
         </td>
         <td>
           {{ item.descricao }}
+        </td>
+        <td>
+          {{ item.modificado }}
         </td>
       </tr>
     </tbody>

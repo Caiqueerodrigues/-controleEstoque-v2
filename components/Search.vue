@@ -28,15 +28,6 @@
         loading: false,
     }),
     methods: {
-    //   onClick () {
-    //     this.loading = true
-
-    //     setTimeout(() => {
-    //       this.loading = false
-    //       this.loaded = true
-    //     }, 2000)
-    //   },
-
       search() {
         if(this.searchInput != ``) {
             this.loading = true

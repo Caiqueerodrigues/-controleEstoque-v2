@@ -89,88 +89,88 @@
     </v-col>
 </template>
 <script>
-    export default {
-        name: 'Form',
-        props: ['estoqueLocal', 'dados', 'salvarLocal', 'drawer'],
-        data: () => ({
-            //category
-            valid: false,
-            category: ''.toLowerCase(),
-            categoryRules: [
-            value => {
-            if (value) return true
-                return 'Preencha a Categoria.'
+export default {
+    name: 'Form',
+    props: ['estoqueLocal', 'dados', 'salvarLocal', 'drawer'],
+    data: () => ({
+        //category
+        valid: false,
+        category: ''.toLowerCase(),
+        categoryRules: [
+        value => {
+        if (value) return true
+            return 'Preencha a Categoria.'
+        },
+        value => {
+            if (value?.length <= 10) return true
+                return 'Categoria informada muito longa'
             },
+        ],
+        //name
+        nameProduct: ''.toLowerCase(),
+        nameProductRules: [
             value => {
-                if (value?.length <= 10) return true
-                  return 'Categoria informada muito longa'
+                if (value?.length > 5) return true
+                return 'O nome do produto precisa ter mais de 5 caracteres.'
+            },
+        ],
+        //quantity
+        valid: true,
+        quantity: '',
+        quantityRules: [
+            v => !!v || 'Quantidade Necessária.',
+        ],
+        select: null,
+        items: [
+            '10',
+            '15',
+            '20',
+            '25',
+            '30',
+            '40',
+            '50',
+            '100'
+        ],
+        //Descritption
+        valid: false,
+        description: ''.toLowerCase(),
+        descriptionRules: [
+            value => {
+                if (value) return true
+                    return 'Descrição Obrigatória.'
                 },
-            ],
-            //name
-            nameProduct: ''.toLowerCase(),
-            nameProductRules: [
                 value => {
-                    if (value?.length > 5) return true
-                    return 'O nome do produto precisa ter mais de 5 caracteres.'
-                },
-            ],
-            //quantity
-            valid: true,
-            quantity: '',
-            quantityRules: [
-                v => !!v || 'Quantidade Necessária.',
-            ],
-            select: null,
-            items: [
-                '10',
-                '15',
-                '20',
-                '25',
-                '30',
-                '40',
-                '50',
-                '100'
-            ],
-            //Descritption
-            valid: false,
-            description: ''.toLowerCase(),
-            descriptionRules: [
-                value => {
-                    if (value) return true
-                        return 'Descrição Obrigatória.'
-                    },
-                    value => {
-                    if (value?.length >= 8) return true
-                        return 'Minimo de 8 caracateres.'
-                },
-            ]
-        }),
-        methods: {
-            register() {
-                const indicePesquisa = this.estoqueLocal.findIndex(produto => produto.nome.toLowerCase().trim() === this.nameProduct)
-                if (indicePesquisa === 1 || indicePesquisa === undefined) {
-                    alert(`[ERRO] Produto já existente no estoque`)
-                    this.drawer()
-                    return
-                }   
-                if(this.category != `` && this.name != ``  && this.quantity != `` && this.description!= `` ) {
-                    this.estoqueLocal.push({
-                        categoria: this.category,
-                        nome: this.nameProduct,
-                        quantidadeKg: Number(this.quantity),
-                        descricao: this.description,
-                        show: true,
-                    })
-                    console.log(this.estoqueLocal)
-                    console.log(this.estoqueLocal[3].quantidadeKg)
-                }
-                if(this.dados === true) {
-                    this.salvarLocal()
-                }
+                if (value?.length >= 8) return true
+                    return 'Minimo de 8 caracateres.'
+            },
+        ]
+    }),
+    methods: {
+        register() {
+            const indicePesquisa = this.estoqueLocal.findIndex(produto => produto.nome.toLowerCase().trim() === this.nameProduct)
+            if (indicePesquisa === 1 || indicePesquisa === undefined) {
+                alert(`[ERRO] Produto já existente no estoque`)
                 this.drawer()
+                return
+            }   
+            if(this.category != `` && this.name != ``  && this.quantity != `` && this.description!= `` ) {
+                this.estoqueLocal.push({
+                    categoria: this.category,
+                    nome: this.nameProduct,
+                    quantidadeKg: Number(this.quantity),
+                    descricao: this.description,
+                    show: true,
+                    modificado:  new Date().toLocaleDateString(),
+                })
+                console.log(this.estoqueLocal)
             }
+            if(this.dados === true) {
+                this.salvarLocal()
+            }
+            this.drawer()
         }
     }
+}
 </script>
 <style scoped>
     .v-col{

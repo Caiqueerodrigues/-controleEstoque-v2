@@ -6,14 +6,8 @@
   </div>
 </template>
 <script>
-  import MainPage from './components/MainPage.vue';
-  export default {
-    name: 'Home',
-    components: { MainPage },
-    data() {
-      return {
+export default {
+  name: 'Home',
 
-      }
-    }
-  }
+}
 </script>
