@@ -87,9 +87,11 @@
             fluid
             class="d-flex justify-space-between pa-0"
         >
+            <!--search-->
             <v-col>
                 <Search :estoqueLocal="estoqueLocal" :dados="dadosAtuais" :salvarLocal="salvarLocal" />
             </v-col>
+            <!--Register-->
             <v-col class="d-flex">
                 <Sale />
                 <Register :estoqueLocal="estoqueLocal" :dados="dadosAtuais" :salvarLocal="salvarLocal"/>
