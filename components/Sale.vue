@@ -1,5 +1,5 @@
 <template>
-    <v-layout>
+    <!-- <v-layout>
         <v-navigation-drawer
             v-model="show"
             temporary
@@ -83,20 +83,104 @@
                 </tbody>
             </v-table>
             
-            <v-col
-                class="d-flex justify-center"
-            >
-                <v-btn
-                    color="#0f0"
-                    variant="outlined"
-                    size="large"
-                    class="btnConfirmar mt-1"
-                >
-                Confirmar Venda
-                </v-btn>
-            </v-col>
+            
         </v-navigation-drawer>
-    </v-layout>
+    </v-layout> -->
+    <v-row justify="center">
+        <v-dialog
+            v-model="show"
+            persistent
+            width="80%"
+        >
+            <v-card>
+                <!--Title-->
+                <v-card-title
+                    class="text-center"
+                >
+                    <span 
+                        class="text-h5"
+                    >
+                        Efetuar Venda
+                    </span>
+                </v-card-title>
+                <v-card-text>
+                    <v-container>
+                        <v-row>
+                            <v-col cols="12">
+                                <v-combobox
+                                    v-model="select"
+                                    :items="items"
+                                    autofocus
+                                    chips
+                                    label="Produtos para Venda"
+                                    class="capitalize"
+                                    multiple
+                                    clearable
+                                ></v-combobox>
+                                <v-row
+                                    class="d-flex justify-space-evenly flex-wrap"
+                                >
+                                    <v-card
+                                        v-for="(item, index) in select"
+                                        :key="index"
+                                        elevation="12"
+                                        class="px-5 py-4 rounded-xl d-inline-flex capitalize mt-2"
+                                        color="color2"
+                                        height="100px"
+                                        width="200"
+                                        v-model="quantity"
+                                    >
+                                        <v-row
+                                            class="pa-1 justify-center"
+                                        >
+                                            {{ item }}
+                                        </v-row>
+                                        <v-row
+                                            class="mx-10 my-8 sale"
+                                        >
+                                            <v-icon
+                                                color="golden2"
+                                                @click="quantity++"
+                                            >
+                                                mdi-plus-circle
+                                            </v-icon>
+                                            <span>
+                                                {{ quantity }}
+                                            </span>
+                                            <v-icon
+                                                color="golden2"
+                                                @click="quantity--"
+                                            >
+                                                mdi-minus-circle
+                                            </v-icon>
+                                        </v-row>
+                                        
+                                    </v-card>
+                                </v-row>
+                            </v-col>
+                        </v-row>
+                    </v-container>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                        color="blue-darken-1"
+                        variant="outlined"
+                        @click="clearForm()"
+                    >
+                        Fechar
+                    </v-btn>
+                    <v-btn
+                        color="#0f0"
+                        variant="outlined"
+                        @click="clearForm()"
+                    >
+                        Salvar
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+    </v-row>
 </template>
 <script>
 export default {
@@ -105,10 +189,26 @@ export default {
 
     data () {
       return {
-        drawer: false,
+        dialog: false,
+        select: [],
+        items:[],
+        quantity: [0],
+        sale: {}
       }
     },
     methods: {
+        constructorItems () {
+            this.estoqueLocal.forEach(element => {
+                this.items.push(element.nome)
+            })
+        },
+        clearForm() {
+            this.select = []
+            this.show = false 
+        }
+    },
+    created () {
+        this.constructorItems()
     },
     computed: {
         show: {
@@ -118,7 +218,8 @@ export default {
             set(nv) {
                 this.$emit("closeSale", nv);
             },
-        }
+        },
+        
     },
 }
 </script>
@@ -133,5 +234,16 @@ thead > tr > th {
     border: 2px solid #F8F25F;
     max-width: 85%;
     margin: auto;
+}
+.sale {
+    /* display: block !important;
+    text-align: center !important;
+    height: min-content !important;
+    width: 100% !important; */
+    position: absolute;
+    
+}
+.capitalize {
+    text-transform: capitalize;
 }
 </style>

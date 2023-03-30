@@ -155,9 +155,9 @@ export default {
 
         register() {
             const indicePesquisa = this.estoqueLocal.findIndex(produto => produto.nome.toLowerCase().trim() === this.nameProduct)
-            if (indicePesquisa === 1 || indicePesquisa === undefined) {
+
+            if (indicePesquisa != -1 || indicePesquisa === undefined) {
                 alert(`[ERRO] Produto já existente no estoque`)
-                this.drawer()
                 return
             }   
             if(this.category != `` && this.name != ``  && this.quantity != `` && this.description!= `` ) {

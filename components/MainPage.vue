@@ -48,7 +48,9 @@
                 mdi-paw
             </v-icon>
         </v-row>
-        <v-divider></v-divider>
+        <v-divider
+            :thickness="3"
+        ></v-divider>
         <!--Botao Dados-->
         <v-row
             id="inicio"
@@ -95,27 +97,30 @@
             <v-col 
                 class="d-flex"
             >
+            <!--btn register-->
                 <div 
-                class="d-flex justify-center align-center h-100">
-                <v-btn
-                    @click.stop="drawer = !drawer"
-                    elevation="8"
-                    size="x-large"
-                    variant="outlined"
-                    color="#0f0"
-                    class="mr-8 px-2 py-3 text-h6"
-                    @click="showSale = true"
-                >
-                    <template
-                        v-slot:prepend
+                    class="d-flex justify-center align-center h-100">
+                    <v-btn
+                        @click.stop="drawer = !drawer"
+                        elevation="8"
+                        size="x-large"
+                        variant="outlined"
+                        color="#0f0"
+                        class="mr-8 px-2 py-3 text-h6"
+                        @click="showSale = true"
                     >
-                        <v-icon>
-                            mdi-currency-usd
-                        </v-icon>
-                        Vender 
-                    </template>
-                </v-btn>
-            </div>
+                        <template
+                            v-slot:prepend
+                        >
+                            <v-icon>
+                                mdi-currency-usd
+                            </v-icon>
+                            Vender 
+                        </template>
+                    </v-btn>
+                </div>
+
+                <!--btn venda-->
                 <div 
                     class="d-flex justify-center align-center h-100">
                     <v-btn
@@ -125,6 +130,7 @@
                         variant="outlined"
                         color="#28B4FA"
                         class="px-2 text-h6 mx-0"
+                        v-bind="props"
                     >
                         <template
                             v-slot:prepend
