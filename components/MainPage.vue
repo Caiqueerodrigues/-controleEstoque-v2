@@ -85,22 +85,77 @@
         <!--Search Bar-->
         <v-container
             fluid
-            class="d-flex justify-space-between pa-0"
+            class="d-flex  pa-0"
         >
             <!--search-->
             <v-col>
                 <Search :estoqueLocal="estoqueLocal" :dados="dadosAtuais" :salvarLocal="salvarLocal" />
             </v-col>
             <!--Register-->
-            <v-col class="d-flex">
-                <Sale />
-                <Register :estoqueLocal="estoqueLocal" :dados="dadosAtuais" :salvarLocal="salvarLocal"/>
+            <v-col 
+                class="d-flex"
+            >
+                <div 
+                class="d-flex justify-center align-center h-100">
+                <v-btn
+                    @click.stop="drawer = !drawer"
+                    elevation="8"
+                    size="x-large"
+                    variant="outlined"
+                    color="#0f0"
+                    class="mr-8 px-2 py-3 text-h6"
+                    @click="showSale = true"
+                >
+                    <template
+                        v-slot:prepend
+                    >
+                        <v-icon>
+                            mdi-currency-usd
+                        </v-icon>
+                        Vender 
+                    </template>
+                </v-btn>
+            </div>
+                <div 
+                    class="d-flex justify-center align-center h-100">
+                    <v-btn
+                        @click="showRegister = true"
+                        elevation="8" 
+                        size="x-large"
+                        variant="outlined"
+                        color="#28B4FA"
+                        class="px-2 text-h6 mx-0"
+                    >
+                        <template
+                            v-slot:prepend
+                        >
+                            <v-icon>
+                                mdi-plus-thick
+                            </v-icon>
+                            Cadastrar Produto
+                        </template>
+                    </v-btn>
+                </div>
             </v-col>
         </v-container>
         <!--Table-->
-        <v-row>
+        <v-col>
             <TableStock :estoqueLocal="estoqueLocal"/>
-        </v-row>
+        </v-col>
+        <Sale 
+            @closeSale="showSale = $event" 
+            :estoqueLocal="estoqueLocal" 
+            :dados="dadosAtuais" 
+            :salvarLocal="salvarLocal" 
+            :showSale="showSale"
+        />
+        <Register 
+            @closeRegister="showRegister = $event" 
+            :estoqueLocal="estoqueLocal" 
+            :dados="dadosAtuais" 
+            :salvarLocal="salvarLocal" 
+            :showRegister="showRegister"
+        />
     </v-container>
     <!--footer-->
     <v-container
@@ -143,6 +198,7 @@ export default {
                 quantidadeKG: 30,
                 descricao: `sem corantes`,
                 show: true,
+                vendido: 0,
                 modificado: '25/12/2022',
             },
             {
@@ -151,6 +207,7 @@ export default {
                 quantidadeKG: 40,
                 descricao: `sabor carne`,
                 show: true,
+                vendido: 0,
                 modificado: '20/03/2023',
             },
             {
@@ -159,6 +216,7 @@ export default {
                 quantidadeKG: 10,
                 descricao: `100% natural`,
                 show: true,
+                vendido: 0,
                 modificado: '27/02/2023',
             },
             {
@@ -167,6 +225,7 @@ export default {
                 quantidadeKG: 17,
                 descricao: `borracha sintética`,
                 show: true,
+                vendido: 0,
                 modificado: '12/03/2023',
             },
             {
@@ -175,9 +234,12 @@ export default {
                 quantidadeKG: 20,
                 descricao: `todos sabores`,
                 show: true,
+                vendido: 0,
                 modificado: '28/03/2023',
             }],
-            dados: false
+            showSale: false,
+            showRegister: false,
+            dados: false,
         }
     },
     methods: {
