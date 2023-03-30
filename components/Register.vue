@@ -1,7 +1,7 @@
 <template>
     <v-layout class="d-flex mx-0">
         <v-navigation-drawer
-            v-model="drawer"
+            v-model="show"
             temporary
             location="right"
             class="pa-5 w-50"
@@ -11,10 +11,11 @@
             >
                 Cadastrar Produto
             </h1>
+            <!--X-->
             <v-icon
                 class="float-right mt-n12"
                 id="close"
-                @click="closeDrawer()"
+                @click="show = false"
             >
                 mdi-alpha-x-box-outline
             </v-icon>
@@ -109,33 +110,13 @@
                 </v-col>
             </v-form>
         </v-navigation-drawer>
-        <div 
-            class="d-flex justify-center align-center h-100">
-            <v-btn
-                @click.stop="drawer = !drawer"
-                elevation="8" 
-                size="x-large"
-                variant="outlined"
-                color="#28B4FA"
-                class="px-2 text-h6 mx-0"
-            >
-                <template
-                    v-slot:prepend
-                >
-                    <v-icon>
-                        mdi-plus-thick
-                    </v-icon>
-                    Cadastrar Produto
-                </template>
-            </v-btn>
-        </div>
     </v-layout>
 </template>
 <script>
 import {MESSAGES} from '@/lib/messages.js'
 export default {
     name: 'RegisterProduct',
-    props: ['estoqueLocal', 'dados', 'salvarLocal'],
+    props: ['estoqueLocal', 'dados', 'salvarLocal','showRegister'],
     data () {
       return {
         drawer: false,
@@ -197,10 +178,19 @@ export default {
             } catch(error) {
                 console.log(error)
             }
-        
             this.closeDrawer()
         }
-    }
+    },
+    computed: {
+        show: {
+            get() {
+                return this.showRegister;
+            },
+            set(nv) {
+                this.$emit("closeRegister", nv);
+            },
+        }
+    },
 }
 </script>
 <style scoped>
