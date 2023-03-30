@@ -7,8 +7,7 @@
 main {
     background: linear-gradient(#460009, #660103, #460009);
     color: #F8F25F;
-    width: 100vw;
-    height: 100vh;
+    min-width: 100vw;
 }
 
 /* :root {

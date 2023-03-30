@@ -1,7 +1,7 @@
 <template>
   <v-table
     fixed-header
-    class="mx-auto mt-3 w-75 rounded-xl"
+    class="mx-auto mt-3 rounded-xl"
   >
     <thead>
       <tr>
@@ -28,6 +28,11 @@
         <th
           class="text-left"
         >
+          Vendidos
+        </th>
+        <th
+          class="text-left"
+        >
           Atualizada em
         </th>
       </tr>
@@ -49,6 +54,11 @@
         <td>
           {{ item.descricao }}
         </td>
+        <td
+          class="pl-12"
+        >
+          {{ item.vendido }}
+        </td>
         <td>
           {{ item.modificado }}
         </td>
@@ -57,9 +67,15 @@
   </v-table>
 </template>
 <script>
-  export default {
-    name: 'TableStock',
-    props: ['estoqueLocal'],
+export default {
+  name: 'TableStock',
+  props: ['estoqueLocal'],
+  data () {
+    return {
+    }
+  },
+  methods: {
+  }
 }
 </script>
 <style scoped>
@@ -72,5 +88,13 @@
   background-color: transparent;
   color: #F8F25F;
   border: 2px solid #F8F25F;
+ }
+
+ .venda {
+  max-height: 35px !important;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  overflow-y: hidden;
  }
 </style>
