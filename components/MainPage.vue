@@ -202,7 +202,7 @@ export default {
                 {
                     nome: `exemplo de ração`,
                     categoria: `ração`,
-                    quantidadeKG: 30,
+                    quantidadeKg: 30,
                     descricao: `sem corantes`,
                     show: true,
                     vendido: 0,
@@ -212,7 +212,7 @@ export default {
                 {
                     nome: `luck dog`,
                     categoria: `ração`,
-                    quantidadeKG: 40,
+                    quantidadeKg: 40,
                     descricao: `sabor carne`,
                     show: true,
                     vendido: 0,
@@ -222,7 +222,7 @@ export default {
                 {
                     nome: `osso defumado`,
                     categoria: `alimento`,
-                    quantidadeKG: 10,
+                    quantidadeKg: 10,
                     descricao: `100% natural`,
                     show: true,
                     vendido: 0,
@@ -232,7 +232,7 @@ export default {
                 {
                     nome: `bolinha`,
                     categoria: `brinquedos`,
-                    quantidadeKG: 17,
+                    quantidadeKg: 17,
                     descricao: `borracha sintética`,
                     show: true,
                     vendido: 0,
@@ -242,7 +242,7 @@ export default {
                 {
                     nome: `mix`,
                     categoria: `ração`,
-                    quantidadeKG: 20,
+                    quantidadeKg: 20,
                     descricao: `todos sabores`,
                     show: true,
                     vendido: 0,
