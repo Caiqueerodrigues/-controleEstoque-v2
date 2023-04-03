@@ -49,7 +49,7 @@
           {{ item.nome }}
         </td>
         <td>
-          {{ item.quantidadeKG }} Kg/Un
+          {{ item.quantidadeKg }} Kg/Un
         </td>
         <td>
           {{ item.descricao }}
