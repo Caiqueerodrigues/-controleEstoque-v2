@@ -50,7 +50,7 @@
                         <v-text-field
                         v-model="nameProduct"
                         label="Nome do produto"
-                        :rules="nameProductRules"
+                        :rules="[rules.required('nome')]"
                         >
                         </v-text-field>
                 </v-col>
@@ -64,7 +64,7 @@
                     <v-select
                         v-model="quantity"
                         :items="items"
-                        :rules="[v => !!v || 'Quantiade necessária.']"
+                        :rules="[v => !!v || 'Quantidade necessária.']"
                         label="120"
                         required
                     >
@@ -81,7 +81,7 @@
                         bg-color="grey-lighten-2"
                         color="#F8F25F"
                         v-model="description"
-                        :rules="descriptionRules"
+                        :rules="[rules.required('descrição')]"
                         :counter="10"
                         rows="2"
                         label="Descrição resumida"
@@ -119,7 +119,6 @@ export default {
     props: ['estoqueLocal', 'dados', 'salvarLocal','showRegister'],
     data () {
       return {
-        drawer: false,
         //categoria
         valid: false,
         category: ''.toLowerCase(),
@@ -128,6 +127,9 @@ export default {
         },
         //name
         nameProduct: ''.toLowerCase(),
+        rules: {
+            required: (fieldname) => (v) => !!v || `${MESSAGES[1010](fieldname).msg}`
+        },
         //quantity
         valid: true,
         quantity: '',
@@ -145,11 +147,14 @@ export default {
         //Descritption
         valid: false,
         description: ''.toLowerCase(),
+        rules: {
+            required: (fieldname) => (v) => !!v || `${MESSAGES[1010](fieldname).msg}`
+        }
       }
     },
     methods: {
         closeDrawer() {
-            this.drawer = !this.drawer
+            this.show = !this.show
             this.$refs.registerProductForm.reset()
         },
 
@@ -166,19 +171,16 @@ export default {
                     nome: this.nameProduct,
                     quantidadeKg: Number(this.quantity),
                     descricao: this.description,
+                    vendido: 0,
                     show: true,
                     modificado:  new Date().toLocaleDateString(),
                 })
+                console.log(this.estoqueLocal)
+                this.closeDrawer()
             }
             if(this.dados === true) {
                 this.salvarLocal()
             }
-            try{
-                console.log(this.$refs["registerProductForm"].validate())
-            } catch(error) {
-                console.log(error)
-            }
-            this.closeDrawer()
         }
     },
     computed: {
@@ -189,7 +191,7 @@ export default {
             set(nv) {
                 this.$emit("closeRegister", nv);
             },
-        }
+        },
     },
 }
 </script>
