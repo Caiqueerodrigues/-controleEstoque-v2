@@ -37,8 +37,8 @@
                                     class="d-flex justify-space-evenly flex-wrap"
                                 >
                                     <CardItem 
-                                        v-show="show"
                                         :sale="sale"
+                                        v-show="show"
                                         :select="select"
                                         :index="index"
                                         :item="item"
@@ -66,7 +66,7 @@
                     <v-btn
                         color="#0f0"
                         variant="outlined"
-                        @click="clearForm(), saleConfirmed"
+                        @click="venda()"
                     >
                         Salvar
                     </v-btn>
@@ -87,7 +87,6 @@ export default {
             items:[],
             quantity: [0],
             sale: [],
-            saleConfirmed: '',
         }
     },
     methods: {
@@ -99,8 +98,21 @@ export default {
         clearForm() {
             this.select = []
             this.show = false 
-            console.log(this.sale)
         },
+        venda () {
+            this.estoqueLocal.forEach((element)=> {
+                this.sale.forEach(itemSale => {
+                    if(itemSale.nome === element.nome) {
+                        element.quantidadeKg -= itemSale.quantidade
+                        console.log('venda efetuada')
+                    }
+                })
+            })
+            //Para autualizar os dados localmente
+            if(this.dados === true) {
+                this.salvarLocal()
+            }
+        }
     },
     created () {
         this.constructorItems()
