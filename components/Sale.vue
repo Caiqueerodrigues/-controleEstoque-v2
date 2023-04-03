@@ -104,7 +104,9 @@ export default {
                 this.sale.forEach(itemSale => {
                     if(itemSale.nome === element.nome) {
                         element.quantidadeKg -= itemSale.quantidade
-                        console.log('venda efetuada')
+                        element.vendido += itemSale.quantidade
+
+                        this.clearForm()
                     }
                 })
             })
