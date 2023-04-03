@@ -79,8 +79,6 @@ export default {
                     }
                 }
             }
-            console.log(this.sale)
-            // this.$refs.formQuantidade.reset()
         },
     },
 }
