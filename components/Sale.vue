@@ -110,7 +110,7 @@ export default {
                             element.quantidadeKg -= itemSale.quantidade
                             element.vendido += itemSale.quantidade
                             if ( element.quantidadeKg == 0) {
-                                element.status = 'indisponivel'
+                                element.status = 'indisponível'
                             }
 
                             this.clearForm()
