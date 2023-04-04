@@ -25,6 +25,9 @@
         >
           Descrição
         </th>
+        <th>
+          Status
+        </th>
         <th
           class="text-left"
         >
@@ -34,6 +37,12 @@
           class="text-left"
         >
           Atualizada em
+        </th>
+        <th>
+
+        </th>
+        <th>
+
         </th>
       </tr>
     </thead>
@@ -54,6 +63,20 @@
         <td>
           {{ item.descricao }}
         </td>
+        <td>
+          <div
+            v-if="item.quantidadeKg > 0"
+            class="status"
+          >
+            {{ item.status}}
+          </div>
+          <div
+            v-if="item.quantidadeKg == 0"
+            class="status indisp"
+          >
+            {{ item.status}}
+          </div>
+        </td>
         <td
           class="pl-12"
         >
@@ -61,6 +84,20 @@
         </td>
         <td>
           {{ item.modificado }}
+        </td>
+        <td>
+          <v-icon
+            color="#00f"
+          >
+            mdi-pencil
+          </v-icon>
+        </td>
+        <td>
+          <v-icon 
+            color="#00f"
+          >
+            mdi-trash-can-outline
+          </v-icon>
         </td>
       </tr>
     </tbody>
@@ -74,8 +111,6 @@ export default {
     return {
     }
   },
-  methods: {
-  }
 }
 </script>
 <style scoped>
@@ -96,5 +131,17 @@ export default {
   justify-content: center;
   display: flex;
   overflow-y: hidden;
+ }
+
+ .status {
+  border-radius: 30px;
+  background-color: #0f0;
+  color: black;
+  box-shadow: 2px 2px 5px black;
+  text-align: center;
+ }
+
+ .indisp {
+  background-color: #f00;
  }
 </style>
