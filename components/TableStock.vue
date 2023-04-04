@@ -95,7 +95,7 @@
         <td>
           <v-icon 
           @click="apagarItem(index)"
-            color="#00f"
+            color="#f00"
           >
             mdi-trash-can-outline
           </v-icon>
