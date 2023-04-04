@@ -94,6 +94,7 @@
         </td>
         <td>
           <v-icon 
+          @click="apagarItem(index)"
             color="#00f"
           >
             mdi-trash-can-outline
@@ -109,8 +110,18 @@ export default {
   props: ['estoqueLocal'],
   data () {
     return {
+      itemRemovido: []
     }
   },
+  methods: {
+    apagarItem(index) {
+      let confirmacao = confirm(`Tem certeza que deseja remover o item ${this.estoqueLocal[index].nome.toUpperCase()}?`)
+      if( confirmacao === true) {
+        this.itemRemovido.push(this.estoqueLocal.splice(index,1))
+      }
+      console.log(this.itemRemovido)
+    }
+  }
 }
 </script>
 <style scoped>
@@ -139,6 +150,7 @@ export default {
   color: black;
   box-shadow: 2px 2px 5px black;
   text-align: center;
+  padding: 2px;
  }
 
  .indisp {
