@@ -95,7 +95,7 @@
         <td>
           <v-icon 
           @click="apagarItem(index)"
-            color="#f00"
+            color="#E13100"
           >
             mdi-trash-can-outline
           </v-icon>
@@ -146,7 +146,7 @@ export default {
 
  .status {
   border-radius: 30px;
-  background-color: #0f0;
+  background-color: #36BD5C;
   color: black;
   box-shadow: 2px 2px 5px black;
   text-align: center;
@@ -154,6 +154,6 @@ export default {
  }
 
  .indisp {
-  background-color: #f00;
+  background-color: #E76A6A;
  }
 </style>
