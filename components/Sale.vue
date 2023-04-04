@@ -109,6 +109,9 @@ export default {
                         if(element.quantidadeKg >= itemSale.quantidade) {
                             element.quantidadeKg -= itemSale.quantidade
                             element.vendido += itemSale.quantidade
+                            if ( element.quantidadeKg == 0) {
+                                element.status = 'indisponivel'
+                            }
 
                             this.clearForm()
                         } else {
