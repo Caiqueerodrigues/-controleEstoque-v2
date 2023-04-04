@@ -172,6 +172,7 @@ export default {
                     quantidadeKg: Number(this.quantity),
                     descricao: this.description,
                     vendido: 0,
+                    status: 'disponível',
                     show: true,
                     modificado:  new Date().toLocaleDateString(),
                 })
