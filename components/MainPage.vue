@@ -198,7 +198,7 @@ export default {
     data() {
         return {
             checked: true,
-            estoqueLocal: [
+            estoque: [
                 {
                     nome: `exemplo de ração`,
                     categoria: `ração`,
@@ -281,6 +281,9 @@ export default {
     computed: {
         dadosAtuais() { 
             return this.dados
+        }, 
+        estoqueLocal() {
+            return this.estoque
         }
     } 
 }
