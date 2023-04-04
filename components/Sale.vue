@@ -102,7 +102,6 @@ export default {
             this.show = false 
         },
         venda () {
-            console.log(this.estoqueLocal)
             this.estoqueLocal.forEach((element)=> {
                 this.sale.forEach(itemSale => {
                     if(itemSale.nome === element.nome) {
