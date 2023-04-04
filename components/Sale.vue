@@ -7,6 +7,7 @@
         >
             <v-card
                 class="dialogSale"
+                @click="verificacaoItems()"
             >
                 <!--Title-->
                 <v-card-title
@@ -84,7 +85,7 @@ export default {
         return {
             dialog: false,
             select: [],
-            items:[],
+            items: [],
             quantity: [0],
             sale: [],
         }
@@ -101,6 +102,7 @@ export default {
             this.show = false 
         },
         venda () {
+            console.log(this.estoqueLocal)
             this.estoqueLocal.forEach((element)=> {
                 this.sale.forEach(itemSale => {
                     if(itemSale.nome === element.nome) {
@@ -118,6 +120,12 @@ export default {
             //Para autualizar os dados localmente
             if(this.dados === true) {
                 this.salvarLocal()
+            }
+        },
+        verificacaoItems () {
+            if(this.estoqueLocal.length > this.items.length) {
+                this.items = []
+                this.constructorItems()
             }
         }
     },
