@@ -7,7 +7,6 @@
         >
             <v-card
                 class="dialogSale"
-                @click="verificacaoItems()"
             >
                 <!--Title-->
                 <v-card-title
@@ -24,6 +23,7 @@
                         <v-row>
                             <v-col cols="12">
                                 <v-combobox
+                                    @mouseenter="verificacaoItems()"
                                     v-model="select"
                                     :items="items"
                                     autofocus
