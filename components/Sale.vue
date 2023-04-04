@@ -97,6 +97,7 @@ export default {
         },
         clearForm() {
             this.select = []
+            this.sale= []
             this.show = false 
         },
         venda () {
