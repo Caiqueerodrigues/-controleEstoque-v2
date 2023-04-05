@@ -150,6 +150,7 @@
                 :estoqueLocal="estoqueLocal"
                 :dados="dadosAtuais"
                 :showRegister="showRegister"
+                :salvarLocal="salvarLocal"
                 />
         </v-col>
         <Sale 
@@ -277,7 +278,7 @@ export default {
                     this.salvarLocal()
                     return
                 } else {
-                    this.estoqueLocal = JSON.parse(localStorage.getItem(`estoque`))
+                    this.estoque = JSON.parse(localStorage.getItem(`estoque`))
                 }
             }
         },
