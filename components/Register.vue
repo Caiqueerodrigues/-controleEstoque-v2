@@ -168,7 +168,6 @@ export default {
         },
 
         register() {
-            this.item = null
             const indicePesquisa = this.estoqueLocal.findIndex(produto => produto.nome.toLowerCase().trim() === this.nameProduct)
 
             if (indicePesquisa != -1 || indicePesquisa === undefined) {
