@@ -107,7 +107,7 @@
   <Register 
     @closeRegister="showRegister = $event" 
     :item="item"
-    :dados="dadosAtuais" 
+    :dados="dados" 
     :salvarLocal="salvarLocal" 
     :showRegister="showRegister"
   />
@@ -115,7 +115,7 @@
 <script>
 export default {
   name: 'TableStock',
-  props: ['estoqueLocal', 'dadosAtuais', 'showRegister'],
+  props: ['estoqueLocal', 'dados', 'showRegister', 'salvarLocal'],
   data () {
     return {
       itemRemovido: [],
@@ -129,6 +129,7 @@ export default {
         this.itemRemovido.push(this.estoqueLocal.splice(index,1))
       }
       if(this.dados === true) {
+        localStorage.setItem(`itensExcluidos`,JSON.stringify(this.itemRemovido))
         this.salvarLocal()
       }
     },
@@ -164,7 +165,7 @@ export default {
   color: black;
   box-shadow: 2px 2px 5px black;
   text-align: center;
-  padding: 2px;
+  padding: 4px;
  }
 
  .indisp {
