@@ -45,7 +45,6 @@
                                         :item="item"
                                         v-for="(item, index) in select"
                                             :key="index"
-                                        
                                     />
                                 </v-row>
                             </v-col>

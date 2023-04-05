@@ -146,7 +146,11 @@
         </v-container>
         <!--Table-->
         <v-col>
-            <TableStock :estoqueLocal="estoqueLocal"/>
+            <TableStock 
+                :estoqueLocal="estoqueLocal"
+                :dados="dadosAtuais"
+                :showRegister="showRegister"
+                />
         </v-col>
         <Sale 
             @closeSale="showSale = $event" 
@@ -161,6 +165,7 @@
             :dados="dadosAtuais" 
             :salvarLocal="salvarLocal" 
             :showRegister="showRegister"
+            :item="false"
         />
     </v-container>
     <!--footer-->
