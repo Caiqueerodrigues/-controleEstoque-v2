@@ -88,6 +88,7 @@
         <td>
           <v-icon
             color="#00f"
+            @click="editarItem(index), showRegister = true"
           >
             mdi-pencil
           </v-icon>
@@ -103,14 +104,22 @@
       </tr>
     </tbody>
   </v-table>
+  <Register 
+    @closeRegister="showRegister = $event" 
+    :item="item"
+    :dados="dadosAtuais" 
+    :salvarLocal="salvarLocal" 
+    :showRegister="showRegister"
+  />
 </template>
 <script>
 export default {
   name: 'TableStock',
-  props: ['estoqueLocal'],
+  props: ['estoqueLocal', 'dadosAtuais', 'showRegister'],
   data () {
     return {
-      itemRemovido: []
+      itemRemovido: [],
+      item: {}
     }
   },
   methods: {
@@ -119,9 +128,14 @@ export default {
       if( confirmacao === true) {
         this.itemRemovido.push(this.estoqueLocal.splice(index,1))
       }
-      console.log(this.itemRemovido)
+      if(this.dados === true) {
+        this.salvarLocal()
+      }
+    },
+    editarItem(index) {
+      this.item = this.estoqueLocal[index]
     }
-  }
+  },
 }
 </script>
 <style scoped>
