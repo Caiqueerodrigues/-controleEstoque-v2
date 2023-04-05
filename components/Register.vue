@@ -1,5 +1,7 @@
 <template>
-    <v-layout class="d-flex mx-0">
+    <v-layout 
+        class="d-flex mx-0"
+    >
         <v-navigation-drawer
             v-model="show"
             temporary
@@ -7,9 +9,9 @@
             class="pa-5 w-50"
         >
             <h1
-                class="my-4" 
+                class="my-4"
             >
-                Cadastrar Produto
+                {{ titlePage }}
             </h1>
             <!--X-->
             <v-icon
@@ -17,18 +19,19 @@
                 id="close"
                 @click="show = false"
             >
-                mdi-alpha-x-box-outline
+                mdi-close
             </v-icon>
             <v-form
                 ref="registerProductForm"
             >
+            <!--Categoria-->
                 <v-col
                     md="40"
                 >
                     <p
                         class="font-weight-black"
                     >
-                        Insira a Categoria
+                        {{ titleCategory }}
                     </p>
                     <v-text-field
                         v-model="category"
@@ -45,7 +48,7 @@
                     <p
                         class="font-weight-black"
                     >
-                        Insira o nome do Produto
+                        {{ titleName }}
                     </p>
                         <v-text-field
                         v-model="nameProduct"
@@ -59,7 +62,7 @@
                     <p
                         class="font-weight-black"
                     >
-                        Coloque a quantidade (Kg)
+                        {{ titleQuantity }}
                     </p>
                     <v-select
                         v-model="quantity"
@@ -75,7 +78,7 @@
                     <p
                         class="font-weight-black"
                     >
-                        Faça uma breve Descrição
+                        {{ titleDescription }}
                     </p>
                     <v-textarea
                         bg-color="grey-lighten-2"
@@ -104,7 +107,7 @@
                             <v-icon>
                                 mdi-plus-thick
                             </v-icon>
-                            Cadastrar Produto
+                            {{ btnTitle }}
                         </template>
                     </v-btn>
                 </v-col>
@@ -116,9 +119,15 @@
 import {MESSAGES} from '@/lib/messages.js'
 export default {
     name: 'RegisterProduct',
-    props: ['estoqueLocal', 'dados', 'salvarLocal','showRegister'],
+    props: ['estoqueLocal', 'dados', 'salvarLocal','showRegister', 'item'],
     data () {
       return {
+        titlePage: '',
+        titleCategory: '',
+        titleName: '',
+        titleQuantity: '',
+        titleDescription: '',
+        btnTitle: '',
         //categoria
         valid: false,
         category: ''.toLowerCase(),
@@ -159,6 +168,7 @@ export default {
         },
 
         register() {
+            this.item = null
             const indicePesquisa = this.estoqueLocal.findIndex(produto => produto.nome.toLowerCase().trim() === this.nameProduct)
 
             if (indicePesquisa != -1 || indicePesquisa === undefined) {
@@ -176,13 +186,12 @@ export default {
                     show: true,
                     modificado:  new Date().toLocaleDateString(),
                 })
-                console.log(this.estoqueLocal)
                 this.closeDrawer()
             }
             if(this.dados === true) {
                 this.salvarLocal()
             }
-        }
+        },
     },
     computed: {
         show: {
@@ -194,6 +203,37 @@ export default {
             },
         },
     },
+    watch: {
+        item:
+        {
+            handler(newValue) {
+                console.log('hello')
+                if(newValue) {
+                    this.titlePage = 'Editar Produto'
+                    this.titleCategory = 'Edite a Categoria'
+                    this.titleName= 'Edite o nome'
+                    this.titleQuantity= 'Quantidade'
+                    this.titleDescription = 'Editar a Descrição'
+                    this.btnTitle = 'Salvar Alterações'
+
+                    this.category = this.item.categoria
+                    this.nameProduct = this.item.nome
+                    this.quantity = this.item.quantidadeKg
+                    this.description = this.item.descricao
+                    //Falta mudar a funcao do btn quando for pra salvar as alterações
+                } 
+                if(!newValue) {
+                    this.titlePage = 'Cadastrar Produto'
+                    this.titleCategory = 'Insira a Categoria'
+                    this.titleName = 'Insira o nome do Produto'
+                    this.titleQuantity = 'Coloque a Quantidade'
+                    this.titleDescription = 'Faça uma breve Descrição'
+                    this.btnTitle = 'Cadastrar Produto'
+                }
+            },
+            immediate: true
+        }
+    }
 }
 </script>
 <style scoped>
