@@ -213,7 +213,7 @@ export default {
                     show: true,
                     vendido: 0,
                     status: 'disponível',
-                    id: 1,
+                    id: 0,
                     modificado: '25/12/2022',
                 },
                 {
@@ -224,7 +224,7 @@ export default {
                     show: true,
                     vendido: 0,
                     status: 'disponível',
-                    id: 2,
+                    id: 1,
                     modificado: '20/03/2023',
                 },
                 {
@@ -235,7 +235,7 @@ export default {
                     show: true,
                     vendido: 0,
                     status: 'disponível',
-                    id: 3,
+                    id: 2,
                     modificado: '27/02/2023',
                 },
                 {
@@ -246,7 +246,7 @@ export default {
                     show: true,
                     vendido: 0,
                     status: 'disponível',
-                    id: 4,
+                    id: 3,
                     modificado: '12/03/2023',
                 },
                 {
@@ -257,7 +257,7 @@ export default {
                     show: true,
                     vendido: 0,
                     status: 'disponível',
-                    id: 5,
+                    id: 4,
                     modificado: '28/03/2023',
                 }
             ],
@@ -285,7 +285,7 @@ export default {
 
         salvarLocal() {
             console.log(`chamou LOCAL STORAGE`);
-            localStorage.setItem(`estoque`,JSON.stringify(this.estoqueLocal))
+            localStorage.setItem(`estoque`,JSON.stringify(this.estoque))
             this.estoqueLocal = JSON.parse(localStorage.getItem(`estoque`))
         }
     },
