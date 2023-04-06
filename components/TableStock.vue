@@ -98,6 +98,7 @@
           <v-icon 
           @click="apagarItem(index)"
             color="#E13100"
+            title="Excluir Item"
           >
             mdi-trash-can-outline
           </v-icon>
