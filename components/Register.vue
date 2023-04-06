@@ -186,7 +186,6 @@ export default {
                 }   
                 if(this.category != `` && this.name != ``  && this.quantity != `` && this.description!= `` ) {
                     this.estoqueLocal.push({
-                        id: proximoId,
                         categoria: this.category,
                         nome: this.nameProduct,
                         quantidadeKg: Number(this.quantity),
