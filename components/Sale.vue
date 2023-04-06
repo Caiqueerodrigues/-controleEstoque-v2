@@ -101,8 +101,8 @@ export default {
             this.show = false 
         },
         venda () {
-            this.estoqueLocal.forEach((element)=> {
-                this.sale.forEach(itemSale => {
+            this.sale.forEach((itemSale)=> {
+                this.estoqueLocal.forEach(element => {
                     if(itemSale.nome === element.nome) {
                         if(element.quantidadeKg >= itemSale.quantidade) {
                             element.quantidadeKg -= itemSale.quantidade
@@ -110,7 +110,7 @@ export default {
                             if ( element.quantidadeKg == 0) {
                                 element.status = 'indisponível'
                             }
-
+                            console.log(this.sale)
                             this.clearForm()
                         } else {
                             alert(`[ERRO] Quantidade Informada maior que o estoque Disponível`)
