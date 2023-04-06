@@ -110,6 +110,7 @@
     @closeRegister="showRegister = $event" 
     :item="item"
     :dados="dados" 
+    :estoqueLocal="estoqueLocal"
     :salvarLocal="salvarLocal" 
     :showRegister="showRegister"
   />
