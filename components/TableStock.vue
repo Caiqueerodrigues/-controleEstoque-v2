@@ -88,6 +88,7 @@
         <td>
           <v-icon
             color="#00f"
+            title="Editar Item"
             @click="editarItem(index), showRegister = true"
           >
             mdi-pencil
