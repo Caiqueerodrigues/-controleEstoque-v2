@@ -99,7 +99,7 @@
                         size="x-large"
                         color="#28B4FA"
                         class="w-100 mr-8 mt-3 pa-2"
-                        @click="register()"
+                        @click="registerEdit()"
                     >
                         <template
                             v-slot:prepend
@@ -128,14 +128,15 @@ export default {
         titleQuantity: '',
         titleDescription: '',
         btnTitle: '',
+        eventBtn: '',
         //categoria
         valid: false,
-        category: ''.toLowerCase(),
+        category: '',
         rules: {
             required: (fieldname) => (v) => !!v || `${MESSAGES[1010](fieldname).msg}`
         },
         //name
-        nameProduct: ''.toLowerCase(),
+        nameProduct: '',
         rules: {
             required: (fieldname) => (v) => !!v || `${MESSAGES[1010](fieldname).msg}`
         },
@@ -155,7 +156,7 @@ export default {
         ],
         //Descritption
         valid: false,
-        description: ''.toLowerCase(),
+        description: '',
         rules: {
             required: (fieldname) => (v) => !!v || `${MESSAGES[1010](fieldname).msg}`
         }
@@ -167,30 +168,51 @@ export default {
             this.$refs.registerProductForm.reset()
         },
 
-        register() {
-            const indicePesquisa = this.estoqueLocal.findIndex(produto => produto.nome.toLowerCase().trim() === this.nameProduct)
+        editItem() {
+            console.log(this.estoqueLocal)
+            // const proximoId = this.estoqueLocal.length
+            console.log(this.item)
+            this.closeDrawer()
+        },
 
-            if (indicePesquisa != -1 || indicePesquisa === undefined) {
-                alert(`[ERRO] Produto já existente no estoque`)
-                return
-            }   
-            if(this.category != `` && this.name != ``  && this.quantity != `` && this.description!= `` ) {
-                this.estoqueLocal.push({
-                    categoria: this.category,
-                    nome: this.nameProduct,
-                    quantidadeKg: Number(this.quantity),
-                    descricao: this.description,
-                    vendido: 0,
-                    status: 'disponível',
-                    show: true,
-                    modificado:  new Date().toLocaleDateString(),
-                })
+        registerEdit() {
+            if(!this.item) { 
+                const indicePesquisa = this.estoqueLocal.findIndex(produto => produto.nome.toLowerCase().trim() === this.nameProduct)
+                const proximoId = this.estoqueLocal.length
+
+                if (indicePesquisa != -1 || indicePesquisa === undefined) {
+                    alert(`[ERRO] Produto já existente no estoque`)
+                    return
+                }   
+                if(this.category != `` && this.name != ``  && this.quantity != `` && this.description!= `` ) {
+                    this.estoqueLocal.push({
+                        id: proximoId,
+                        categoria: this.category,
+                        nome: this.nameProduct,
+                        quantidadeKg: Number(this.quantity),
+                        descricao: this.description,
+                        vendido: 0,
+                        status: 'disponível',
+                        show: true,
+                        modificado:  new Date().toLocaleDateString(),
+                    })
+                    this.closeDrawer()
+                }
+            }
+
+            if(this.item) {
+                this.item.categoria = this.category 
+                this.item.nome = this.nameProduct 
+                this.item.quantidadeKg = this.quantity 
+                this.item.descricao = this.description 
+                this.item.modificado = new Date().toLocaleDateString()
+                
                 this.closeDrawer()
             }
             if(this.dados === true) {
                 this.salvarLocal()
             }
-        },
+        }
     },
     computed: {
         show: {
@@ -200,13 +222,12 @@ export default {
             set(nv) {
                 this.$emit("closeRegister", nv);
             },
-        },
+        }
     },
     watch: {
         item:
         {
             handler(newValue) {
-                console.log('hello')
                 if(newValue) {
                     this.titlePage = 'Editar Produto'
                     this.titleCategory = 'Edite a Categoria'
@@ -219,7 +240,6 @@ export default {
                     this.nameProduct = this.item.nome
                     this.quantity = this.item.quantidadeKg
                     this.description = this.item.descricao
-                    //Falta mudar a funcao do btn quando for pra salvar as alterações
                 } 
                 if(!newValue) {
                     this.titlePage = 'Cadastrar Produto'
@@ -228,6 +248,11 @@ export default {
                     this.titleQuantity = 'Coloque a Quantidade'
                     this.titleDescription = 'Faça uma breve Descrição'
                     this.btnTitle = 'Cadastrar Produto'
+
+                    this.category = ''.toLowerCase()
+                    this.nameProduct = ''.toLowerCase()
+                    this.quantity = ''.toLowerCase()
+                    this.description = ''.toLowerCase()
                 }
             },
             immediate: true
