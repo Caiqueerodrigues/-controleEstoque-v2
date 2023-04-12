@@ -90,7 +90,8 @@
         >
             <!--search-->
             <v-col
-                cols="8"
+                cols="12"
+                md="8"
             >
                 <Search :estoqueLocal="estoqueLocal" :dados="dadosAtuais" :salvarLocal="salvarLocal" />
             </v-col>
@@ -127,6 +128,7 @@
                     color="#28B4FA"
                     class="px-2 text-h6 mx-0"
                     v-bind="props"
+                    id="btnCadastrar"
                 >
                     <template
                         v-slot:prepend
@@ -355,5 +357,14 @@ export default {
             font-size: .9em;
             margin-bottom: -20px !important;
         }
-}
+    @media (max-width: 447px) {
+        .v-btn {
+            margin: 4px auto !important;
+            padding: 0px 103px !important;
+        }
+        #btnCadastrar {
+            margin: 5px 20px 0 !important;
+        }
+    }
+    }
 </style>
