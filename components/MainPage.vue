@@ -327,17 +327,9 @@ export default {
         text-decoration: none;
         color: #F8F25F;
     }
-    @media (max-width: 350px) {
+    @media (max-width: 446px) {
         h1, .v-icon {
             font-size: .8em;
-        }
-    }
-    @media (max-width: 424px) {
-        p {
-            font-size: .7rem;
-            max-width: 50px;
-            margin: 5px !important;
-            padding-top: 4px !important;
         }
         #inicio {
             max-width: 200px !important;
@@ -357,14 +349,20 @@ export default {
             font-size: .9em;
             margin-bottom: -20px !important;
         }
-    @media (max-width: 447px) {
+        p {
+            font-size: .7rem;
+            max-width: 50px;
+            margin: 5px !important;
+            padding-top: 4px !important;
+        }
         .v-btn {
             margin: 4px auto !important;
             padding: 0px 103px !important;
         }
         #btnCadastrar {
             margin: 5px 20px 0 !important;
+            padding: 0 90px !important;
+            max-width: 300px !important;
         }
-    }
     }
 </style>
