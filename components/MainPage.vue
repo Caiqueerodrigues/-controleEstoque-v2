@@ -182,6 +182,7 @@
             >
                 <p 
                     class=" mt-4"
+                    id="copy"
                 >
                     <v-icon>
                         mdi-paw
@@ -326,7 +327,7 @@ export default {
     }
     @media (max-width: 350px) {
         h1, .v-icon {
-            font-size: .9em;
+            font-size: .8em;
         }
     }
     @media (max-width: 424px) {
@@ -334,7 +335,7 @@ export default {
             font-size: .7rem;
             max-width: 50px;
             margin: 5px !important;
-            padding-top: 0 !important;
+            padding-top: 4px !important;
         }
         #inicio {
             max-width: 200px !important;
@@ -345,6 +346,14 @@ export default {
         }
         #escolha {
            margin: auto !important;
+        }
+        #copy {
+            min-width: 100vw;
+            place-content: center;
+            display: flex;
+            margin-top: 15px !important;
+            font-size: .9em;
+            margin-bottom: -20px !important;
         }
 }
 </style>
