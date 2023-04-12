@@ -1,80 +1,77 @@
 <template>
-    <v-row justify="center">
-        <v-dialog
-            v-model="show"
-            persistent
-            width="80%"
+    <v-dialog
+        v-model="show"
+        persistent
+        width="80%"
+    >
+        <v-card
+            class="dialogSale"
         >
-            <v-card
-                class="dialogSale"
+            <!--Title-->
+            <v-card-title
+                class="text-center"
             >
-                <!--Title-->
-                <v-card-title
-                    class="text-center"
+                <span 
+                    class="text-h5 golden2"
                 >
-                    <span 
-                        class="text-h5 golden2"
-                    >
-                        Efetuar Venda
-                    </span>
-                </v-card-title>
-                <v-card-text>
-                    <v-container>
-                        <v-row>
-                            <v-col cols="12">
-                                <v-combobox
-                                    @mouseenter="verificacaoItems()"
-                                    v-model="select"
-                                    :items="items"
-                                    autofocus
-                                    chips
-                                    color="golden2"
-                                    label="Produtos para Venda"
-                                    class="capitalize golden2"
-                                    multiple
-                                    clearable
-                                ></v-combobox>
-                                <v-row
-                                    class="d-flex justify-space-evenly flex-wrap"
-                                >
-                                    <CardItem 
-                                        :sale="sale"
-                                        v-show="show"
-                                        :select="select"
-                                        :index="index"
-                                        :item="item"
-                                        v-for="(item, index) in select"
-                                            :key="index"
-                                    />
-                                </v-row>
+                    Efetuar Venda
+                </span>
+            </v-card-title>
+            <v-card-text>
+                <v-container>
+                    <v-row>
+                        <v-col cols="12">
+                            <v-combobox
+                                @mouseenter="verificacaoItems()"
+                                v-model="select"
+                                :items="items"
+                                autofocus
+                                chips
+                                color="golden2"
+                                label="Produtos para Venda"
+                                class="capitalize golden2"
+                                multiple
+                                clearable
+                            ></v-combobox>
+                            <v-col
+                                class="d-flex justify-space-evenly flex-wrap"
+                            >
+                                <CardItem 
+                                    :sale="sale"
+                                    v-show="show"
+                                    :select="select"
+                                    :index="index"
+                                    :item="item"
+                                    v-for="(item, index) in select"
+                                        :key="index"
+                                />
                             </v-col>
-                        </v-row>
-                    </v-container>
-                </v-card-text>
-                <v-card-actions
-                    class="pr-10 pb-5"
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-card-text>
+            <v-card-actions
+                class="pr-10 pb-5"
+            >
+                <v-spacer></v-spacer>
+                <v-btn
+                    color="blue-darken-1"
+                    class="mx-5"
+                    variant="outlined"
+                    @click="clearForm()"
                 >
-                    <v-spacer></v-spacer>
-                    <v-btn
-                        color="blue-darken-1"
-                        class="mx-5"
-                        variant="outlined"
-                        @click="clearForm()"
-                    >
-                        Fechar
-                    </v-btn>
-                    <v-btn
-                        color="#0f0"
-                        variant="outlined"
-                        @click="venda()"
-                    >
-                        Salvar
-                    </v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
-
-    </v-row>
+                    Fechar
+                </v-btn>
+                <v-btn
+                    color="#0f0"
+                    variant="outlined"
+                    @click="venda()"
+                >
+                    Salvar
+                </v-btn>
+            </v-card-actions>
+        </v-card>
+    </v-dialog>
 </template>
 <script>
 export default {
