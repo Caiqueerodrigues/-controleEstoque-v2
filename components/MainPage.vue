@@ -6,7 +6,7 @@
         <!--header-->
         <v-row>
             <v-col
-                class="d-flex pt-3 pb-7 justify-center px-4"
+                class="d-flex pt-3 pb-5 justify-center px-4"
             >
                 <v-icon>
                     mdi-paw
@@ -311,7 +311,7 @@ export default {
 </script>
 <style scoped>
     #main {
-        min-height: 89vh;   
+        min-height: 87.5vh;   
     }
     .rowDados {
         max-width: 400px;
