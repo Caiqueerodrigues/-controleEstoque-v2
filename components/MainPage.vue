@@ -3,50 +3,53 @@
         fluid 
         id="main"
     >
-        <v-row 
-            class="d-flex pt-3 pb-7 justify-center"
-        >
-            <v-icon>
-                mdi-paw
-            </v-icon>
-            <v-icon
-                class="mt-7"
+        <!--header-->
+        <v-row>
+            <v-col
+                class="d-flex pt-3 pb-7 justify-center px-4"
             >
-                mdi-paw
-            </v-icon>
-            <h1>Casa de Rações </h1>
-            <v-icon
-                class="mt-8"
-            >
-                mdi-paw
-            </v-icon>
-            <v-icon>
-                mdi-paw
-            </v-icon>
-            <h1
-                class="mx-4"
-            >
-                e
-            </h1>
-            <v-icon>
-                mdi-paw
-            </v-icon>
-            <v-icon
-                class="mt-6 mx-2"
-            >
-                mdi-paw
-            </v-icon>
-            <h1>
-                Pet Shop
-            </h1>
-            <v-icon
-                class="mt-6 mx-4"
-            >
-                mdi-paw
-            </v-icon>
-            <v-icon>
-                mdi-paw
-            </v-icon>
+                <v-icon>
+                    mdi-paw
+                </v-icon>
+                <v-icon
+                    class="mt-7"
+                >
+                    mdi-paw
+                </v-icon>
+                <h1>Casa de Rações </h1>
+                <v-icon
+                    class="mt-8"
+                >
+                    mdi-paw
+                </v-icon>
+                <v-icon>
+                    mdi-paw
+                </v-icon>
+                <h1
+                    class="mx-4"
+                >
+                    e
+                </h1>
+                <v-icon>
+                    mdi-paw
+                </v-icon>
+                <v-icon
+                    class="mt-6 mx-2"
+                >
+                    mdi-paw
+                </v-icon>
+                <h1>
+                    Pet Shop
+                </h1>
+                <v-icon
+                    class="mt-6 mx-4"
+                >
+                    mdi-paw
+                </v-icon>
+                <v-icon>
+                    mdi-paw
+                </v-icon>
+            </v-col>
         </v-row>
         <v-divider
             :thickness="3"
@@ -54,105 +57,101 @@
         <!--Botao Dados-->
         <v-row
             id="inicio"
+            class="d-flex justify-center ma-0"
         >
-            <v-container 
-                id="escolha"
-                class="d-flex pa-0 justify-center"
+            <v-col 
+                class="rowDados justify-center d-flex pa-0"
             >
-                <v-row 
-                    class="justify-center mt-5 rowDados"
+                <p 
+                    class="pt-4 d-inline-flex mr-10"
                 >
-                    <p 
-                        class="pt-4 d-inline-flex mr-10"
+                    Com Dados Locais
+                </p>
+                <v-switch 
+                    class="d-inline-flex mx-auto"
+                    color="golden2"
+                    id="escolhaDados"
+                    inset 
+                    v-model="checked"
+                    @click="escolhaDados()"
+                >
+                </v-switch>
+                <p 
+                    class="d-inline-flex pt-4"
                     >
-                        Com Dados Locais
-                    </p>
-                    <v-switch 
-                        class="d-inline-flex mb-4 mx-auto"
-                        color="golden2"
-                        id="escolhaDados"
-                        inset 
-                        v-model="checked"
-                        @click="escolhaDados()"
-                    >
-                    </v-switch>
-                    <p 
-                        class="d-inline-flex pt-4"
-                        >
-                        Sem Dados Locais
-                    </p>
-                </v-row>
-            </v-container>
+                    Sem Dados Locais
+                </p>
+            </v-col>
         </v-row>
         <!--Search Bar-->
-        <v-container
-            fluid
-            class="d-flex  pa-0"
+        <v-row
+            no-gutters
+            class="pr-10"
         >
             <!--search-->
-            <v-col>
+            <v-col
+                cols="8"
+            >
                 <Search :estoqueLocal="estoqueLocal" :dados="dadosAtuais" :salvarLocal="salvarLocal" />
             </v-col>
-            <!--Register-->
-            <v-col 
-                class="d-flex"
-            >
             <!--btn register-->
-                <div 
-                    class="d-flex justify-center align-center h-100">
-                    <v-btn
-                        @click.stop="drawer = !drawer"
-                        elevation="8"
-                        size="x-large"
-                        variant="outlined"
-                        color="#0f0"
-                        class="mr-8 px-2 py-3 text-h6"
-                        @click="showSale = true"
+            <v-col 
+                class="width-min mx-5"
+            >
+                <v-btn
+                    @click.stop="drawer = !drawer"
+                    elevation="8"
+                    size="x-large"
+                    variant="outlined"
+                    color="#0f0"
+                    class="px-2 py-3 text-h6"
+                    @click="showSale = true"
+                >
+                    <template
+                        v-slot:prepend
                     >
-                        <template
-                            v-slot:prepend
-                        >
-                            <v-icon>
-                                mdi-currency-usd
-                            </v-icon>
-                            Vender 
-                        </template>
-                    </v-btn>
-                </div>
-
-                <!--btn venda-->
-                <div 
-                    class="d-flex justify-center align-center h-100">
-                    <v-btn
-                        @click="showRegister = true"
-                        elevation="8" 
-                        size="x-large"
-                        variant="outlined"
-                        color="#28B4FA"
-                        class="px-2 text-h6 mx-0"
-                        v-bind="props"
-                    >
-                        <template
-                            v-slot:prepend
-                        >
-                            <v-icon>
-                                mdi-plus-thick
-                            </v-icon>
-                            Cadastrar Produto
-                        </template>
-                    </v-btn>
-                </div>
+                        <v-icon>
+                            mdi-currency-usd
+                        </v-icon>
+                        Vender
+                    </template>
+                </v-btn>
             </v-col>
-        </v-container>
+            <!--btn venda-->
+            <v-col>
+                <v-btn
+                    @click="showRegister = true"
+                    elevation="8"
+                    size="x-large"
+                    variant="outlined"
+                    color="#28B4FA"
+                    class="px-2 text-h6 mx-0"
+                    v-bind="props"
+                >
+                    <template
+                        v-slot:prepend
+                    >
+                        <v-icon>
+                            mdi-plus-thick
+                        </v-icon>
+                        Cadastrar Produto
+                    </template>
+                </v-btn>
+            </v-col>
+        </v-row>
         <!--Table-->
-        <v-col>
-            <TableStock 
-                :estoqueLocal="estoqueLocal"
-                :dados="dadosAtuais"
-                :showRegister="showRegister"
-                :salvarLocal="salvarLocal"
-                />
-        </v-col>
+        <v-row
+            class="px-4"
+        >
+            <v-col>
+                <TableStock
+                    :estoqueLocal="estoqueLocal"
+                    :dados="dadosAtuais"
+                    :showRegister="showRegister"
+                    :salvarLocal="salvarLocal"
+                    />
+            </v-col>
+        </v-row>
         <Sale 
             @closeSale="showSale = $event" 
             :estoqueLocal="estoqueLocal" 
@@ -177,23 +176,33 @@
     >
         <v-divider></v-divider>
         <v-row>
-            <p class="mx-auto pFooter mt-4">
-                <v-icon>
-                    mdi-paw
-                </v-icon>
-                &copy; 
-                <a href="https://www.linkedin.com/in/caique-rodrigues-a113ab249/" target="_blank">
-                    Caique Rodrigues
-                </a>
-                <v-icon>
-                    mdi-paw
-                </v-icon>
-            </p>
-        </v-row>
-        <v-row>
-            <p class="mx-auto pFooter my-0">
-                2023
-            </p>
+            <v-col
+                cols="12"
+                class="pa-0 d-flex justify-center"
+            >
+                <p 
+                    class=" mt-4"
+                >
+                    <v-icon>
+                        mdi-paw
+                    </v-icon>
+                    &copy;
+                    <a href="https://www.linkedin.com/in/caique-rodrigues-a113ab249/" target="_blank">
+                        Caique Rodrigues
+                    </a>
+                    <v-icon>
+                        mdi-paw
+                    </v-icon>
+                </p>
+            </v-col>
+            <v-col
+                cols="12"
+                class="d-flex justify-center pa-0"
+            >
+                <p class="mx-auto my-0">
+                    2023
+                </p>
+            </v-col>
         </v-row>
     </v-container>
 </template>
@@ -306,6 +315,10 @@ export default {
     }
     .rowDados {
         max-width: 400px;
+        max-height: min-content;
+    }
+    .width-min {
+        max-width: min-content;
     }
     a {
         text-decoration: none;
@@ -328,6 +341,7 @@ export default {
         }
         .rowDados {
             width: 90vw !important;
+            margin-left:80px !important;
         }
         #escolha {
            margin: auto !important;
