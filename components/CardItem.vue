@@ -8,37 +8,41 @@
             width="200"
             :id="this.index"
         >
-            <v-row
-                class="pa-1 justify-center"
-            >
-                <span>
-                    {{ item }}
-                </span>
-            </v-row>
-            <v-row
-                class="mx-10 my-8 sale"
-            >
-                <v-form
-                    ref="formQuantidade"
+            <v-row>
+                <v-col
+                    cols="12"
+                    class="pa-1 d-flex justify-center"
                 >
-                    <v-icon
-                        class="mx-1"
-                        color="color2"
-                        @click="quantity++, carrinho('+')"
-                    >
-                        mdi-plus
-                    </v-icon>
                     <span>
-                        {{ quantity }}
+                        {{ item }}
                     </span>
-                    <v-icon
-                        class="mx-1"
-                        color="color2"
-                        @click="check(), carrinho ('-')"
+                </v-col>
+                <v-col
+                    cols="12"
+                    class="d-flex justify-center"
+                >
+                    <v-form
+                        ref="formQuantidade"
                     >
-                        mdi-minus
-                    </v-icon>
-                </v-form>
+                        <v-icon
+                            class="mx-1"
+                            color="color2"
+                            @click="quantity++, carrinho('+')"
+                        >
+                            mdi-plus
+                        </v-icon>
+                        <span>
+                            {{ quantity }}
+                        </span>
+                        <v-icon
+                            class="mx-1"
+                            color="color2"
+                            @click="check(), carrinho ('-')"
+                        >
+                            mdi-minus
+                        </v-icon>
+                    </v-form>
+                </v-col>
             </v-row>
         </v-card>
     </div>
