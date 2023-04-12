@@ -1,22 +1,20 @@
 <template>
-    <v-row>
-        <v-card-text
-            class="ml-10 mt-0 w-50"
+    <v-card-text
+        class="pt-1"
+    >
+        <v-text-field
+            v-model="searchInput"
+            :loading="loading"
+            density="compact"
+            variant="solo"
+            label="Pesquise por Nome"
+            append-inner-icon="mdi-magnify"
+            single-line
+            hide-details
+            @input="search()"
         >
-            <v-text-field
-                v-model="searchInput"
-                :loading="loading"
-                density="compact"
-                variant="solo"
-                label="Pesquise por Nome"
-                append-inner-icon="mdi-magnify"
-                single-line
-                hide-details
-                @input="search()"
-            >
-            </v-text-field>
-        </v-card-text>        
-    </v-row>
+        </v-text-field>
+    </v-card-text>        
 </template>
 <script>
   export default {
@@ -56,7 +54,5 @@
   }
 </script>
 <style scoped>
-    .v-card-text {
-        max-width: 80% !important;
-    }
+    
 </style>
