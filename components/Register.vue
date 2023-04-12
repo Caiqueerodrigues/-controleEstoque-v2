@@ -117,6 +117,7 @@
                         cols="11"
                     >
                         <v-btn
+                            id="btnCadastrar"
                             elevation="8"
                             size="x-large"
                             color="#28B4FA"
@@ -284,5 +285,12 @@ export default {
 }
 </script>
 <style scoped>
-    
+    @media (max-width: 750px) {
+        h1 {
+            font-size: 1.2em;
+        }
+        #btnCadastrar {
+            font-size: .7rem;
+        }
+    }
 </style>
