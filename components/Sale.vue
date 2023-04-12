@@ -152,4 +152,10 @@ export default {
 .capitalize {
     text-transform: capitalize;
 }
+
+@media (max-width: 424px) {
+    .v-btn {
+        margin:5px !important;
+    }
+}
 </style>
