@@ -6,35 +6,37 @@
     <thead>
       <tr>
         <th 
-          class="text-left"
+          class="text-left cat"
         >
           Categoria
         </th>
         <th 
-          class="text-left"
+          class="text-left name"
         >
           Nome
         </th>
         <th 
-          class="text-left"
+          class="text-left qtd"
         >
           Quantidade
         </th>
         <th
-          class="text-left"
+          class="text-left desc"
         >
           Descrição
         </th>
-        <th>
+        <th
+          class="statusDisplay"
+        >
           Status
         </th>
         <th
-          class="text-left"
+          class="text-left vend"
         >
           Vendidos
         </th>
         <th
-          class="text-left"
+          class="text-left att"
         >
           Atualizada em
         </th>
@@ -51,19 +53,29 @@
         v-for="(item, index) in estoqueLocal"
         :key="index"  v-show="item.show"
       >
-        <td>
+        <td
+          class="cat"
+        >
           {{ item.categoria }}
         </td>
-        <td>
+        <td
+          class="name"
+        >
           {{ item.nome }}
         </td>
-        <td>
+        <td
+          class="qtd"
+        >
           {{ item.quantidadeKg }} Kg/Un
         </td>
-        <td>
+        <td
+          class="desc"
+        >
           {{ item.descricao }}
         </td>
-        <td>
+        <td
+          class="statusDisplay"
+        >
           <div
             v-if="item.quantidadeKg > 0"
             class="status"
@@ -78,11 +90,13 @@
           </div>
         </td>
         <td
-          class="pl-12"
+          class="pl-12 vend"
         >
           {{ item.vendido }}
         </td>
-        <td>
+        <td
+          class="att"
+        >
           {{ item.modificado }}
         </td>
         <td>
@@ -153,7 +167,6 @@ export default {
   color: #F8F25F;
   border: 2px solid #F8F25F;
  }
-
  .venda {
   max-height: 35px !important;
   align-items: center;
@@ -161,7 +174,6 @@ export default {
   display: flex;
   overflow-y: hidden;
  }
-
  .status {
   border-radius: 30px;
   background-color: #36BD5C;
@@ -170,8 +182,32 @@ export default {
   text-align: center;
   padding: 4px;
  }
-
  .indisp {
   background-color: #E76A6A;
+ }
+ @media (max-width: 409px) {
+  .cat, .desc, .statusDisplay, .vend, .att {
+    display: none;
+  }
+ }
+ @media (min-width: 410px) and (max-width: 510px) {
+  .cat, .desc, .vend, .att {
+    display: none;
+  }
+ }
+ @media (min-width: 510px) and (max-width: 610px) {
+  .cat, .vend, .att {
+    display: none;
+  }
+ }
+ @media (min-width: 610px) and (max-width: 710px) {
+  .cat, .att {
+    display: none;
+  }
+ }
+ @media (min-width: 710px) and (max-width: 768px) {
+  .att {
+    display: none;
+  }
  }
 </style>
