@@ -327,6 +327,11 @@ export default {
         text-decoration: none;
         color: #F8F25F;
     }
+    @media ( min-width: 370px) {
+        #btnCadastrar {
+            max-width: 300px !important;
+        }
+    }
     @media (max-width: 446px) {
         h1, .v-icon {
             font-size: .8em;
@@ -362,7 +367,7 @@ export default {
         #btnCadastrar {
             margin: 5px 20px 0 !important;
             padding: 0 90px !important;
-            max-width: 300px !important;
+            /* max-width: 300px !important; */
         }
     }
 </style>
