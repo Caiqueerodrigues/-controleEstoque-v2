@@ -314,7 +314,7 @@ export default {
 </script>
 <style scoped>
     #main {
-        min-height: 87.5vh;   
+        min-height: 89.7vh;   
     }
     .rowDados {
         max-width: 400px;
