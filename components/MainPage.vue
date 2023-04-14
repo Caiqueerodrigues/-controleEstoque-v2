@@ -72,34 +72,35 @@
             ></v-divider>
         <!--Botao Dados-->
             <v-col 
-                class="rowDados justify-center d-flex pa-0"
+                cols="3"
+                class=""
             >
-                <p 
-                    class="pt-4 d-inline-flex mr-10"
-                >
+                <p>
                     Com Dados Locais
                 </p>
-                <v-switch 
-                    class="d-inline-flex mx-auto"
+            </v-col>
+            <v-col
+                cols="1"
+                class="pt-0"
+            >
+                <v-switch
                     color="golden2"
                     id="escolhaDados"
-                    inset 
+                    inset
                     v-model="checked"
                     @click="escolhaDados()"
                 >
                 </v-switch>
-                <p 
-                    class="d-inline-flex pt-4"
-                    >
+            </v-col>
+            <v-col
+                cols="3"
+            >
+                <p class="ml-10">
                     Sem Dados Locais
                 </p>
             </v-col>
-        </v-row>
+        
         <!--Search Bar-->
-        <v-row
-            no-gutters
-            class="pr-10"
-        >
             <!--search-->
             <v-col
                 cols="12"
@@ -107,7 +108,7 @@
             >
                 <Search :estoqueLocal="estoqueLocal" :dados="dadosAtuais" :salvarLocal="salvarLocal" />
             </v-col>
-            <!--btn register-->
+            <!--btn venda-->
             <v-col 
                 class="width-min mx-5"
             >
@@ -130,8 +131,10 @@
                     </template>
                 </v-btn>
             </v-col>
-            <!--btn venda-->
-            <v-col>
+            <!--btn register-->
+            <v-col
+                class="width-min"
+            >
                 <v-btn
                     @click="showRegister = true"
                     elevation="8"
@@ -140,7 +143,7 @@
                     color="#28B4FA"
                     class="px-2 text-h6 mx-0"
                     v-bind="props"
-                    id="btnCadastrar"
+    
                 >
                     <template
                         v-slot:prepend
@@ -152,12 +155,11 @@
                     </template>
                 </v-btn>
             </v-col>
-        </v-row>
         <!--Table-->
-        <v-row
-            class="px-4"
-        >
-            <v-col>
+            <v-col
+                cols="11"
+                lg="10"
+            >
                 <TableStock
                     :estoqueLocal="estoqueLocal"
                     :dados="dadosAtuais"
@@ -189,10 +191,12 @@
         fluid
     >
         <v-divider></v-divider>
-        <v-row>
+        <v-row
+            justify="center"
+        >
             <v-col
-                cols="12"
-                class="pa-0 d-flex justify-center"
+                cols="2"
+                class="pa-0 text-center"
             >
                 <p 
                     class=" mt-4"
@@ -212,7 +216,7 @@
             </v-col>
             <v-col
                 cols="12"
-                class="d-flex justify-center pa-0"
+                class="pa-0 text-center"
             >
                 <p class="mx-auto my-0">
                     2023
@@ -328,21 +332,16 @@ export default {
     #main {
         min-height: 89.7vh;
     }
-    .rowDados {
+    /* .rowDados {
         max-width: 400px;
         max-height: min-content;
-    }
+    } */
     .width-min {
         max-width: min-content;
     }
     a {
         text-decoration: none;
         color: #F8F25F;
-    }
-    @media ( min-width: 370px) {
-        #btnCadastrar {
-            max-width: 300px !important;
-        }
     }
     @media (max-width: 446px) {
         .h4, .v-icon {
