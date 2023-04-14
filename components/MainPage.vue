@@ -190,15 +190,14 @@
     >
         <v-divider></v-divider>
         <v-row
-            justify="center"
+            justify="center w-100"
         >
             <v-col
-                cols="2"
+                cols="12"
                 class="pa-0 text-center"
             >
                 <p 
                     class=" mt-4"
-                    id="copy"
                 >
                     <v-icon>
                         mdi-paw
@@ -339,7 +338,7 @@ export default {
     }
     @media (max-width: 446px) {
         .h4, .v-icon {
-            font-size: .8em;
+            font-size: .8em !important;
         }
         #inicio {
             max-width: 200px !important;
@@ -352,7 +351,6 @@ export default {
            margin: auto !important;
         }
         #copy {
-            min-width: 100vw;
             place-content: center;
             display: flex;
             margin-top: 15px !important;
@@ -361,7 +359,7 @@ export default {
         }
         p {
             font-size: .7rem;
-            max-width: 50px;
+            max-width: 90vw;
             margin: 5px !important;
             padding-top: 4px !important;
         }
