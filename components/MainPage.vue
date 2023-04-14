@@ -8,7 +8,7 @@
         >
         <!--header-->
             <v-col
-                cols="9"
+                cols="6"
                 class="pt-3 pb-5 px-4"
             >
                 <v-icon
@@ -72,8 +72,7 @@
             ></v-divider>
         <!--Botao Dados-->
             <v-col 
-                cols="3"
-                class=""
+                cols="2"
             >
                 <p>
                     Com Dados Locais
@@ -93,13 +92,12 @@
                 </v-switch>
             </v-col>
             <v-col
-                cols="3"
+                cols="2"
             >
                 <p class="ml-10">
                     Sem Dados Locais
                 </p>
             </v-col>
-        
         <!--Search Bar-->
             <!--search-->
             <v-col
