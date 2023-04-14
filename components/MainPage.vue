@@ -332,10 +332,6 @@ export default {
     #main {
         min-height: 89.7vh;
     }
-    /* .rowDados {
-        max-width: 400px;
-        max-height: min-content;
-    } */
     .width-min {
         max-width: min-content;
     }
