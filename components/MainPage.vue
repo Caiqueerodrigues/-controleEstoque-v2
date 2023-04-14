@@ -6,47 +6,62 @@
         <!--header-->
         <v-row>
             <v-col
-                class="d-flex pt-3 pb-5 justify-center px-4"
+                cols="12"
+                class="pt-3 pb-5 px-4"
             >
-                <v-icon>
-                    mdi-paw
-                </v-icon>
                 <v-icon
-                    class="mt-7"
+                    class="mb-6"
                 >
                     mdi-paw
                 </v-icon>
-                <h1>Casa de Rações </h1>
                 <v-icon
-                    class="mt-8"
+                    class="mt-6 ml-2"
                 >
                     mdi-paw
                 </v-icon>
-                <v-icon>
+                <span 
+                    class="text-h4 h4"
+                >
+                    Casa de Rações 
+                </span>
+                <v-icon
+                    class="mt-6"
+                >
                     mdi-paw
                 </v-icon>
-                <h1
-                    class="mx-4"
+                <v-icon
+                    class="mb-6 ml-2"
+                >
+                    mdi-paw
+                </v-icon>
+                <span
+                    class="mx-4 text-h4 h4"
                 >
                     e
-                </h1>
-                <v-icon>
-                    mdi-paw
-                </v-icon>
+                </span>
                 <v-icon
-                    class="mt-6 mx-2"
+                    class="mb-6"
                 >
                     mdi-paw
                 </v-icon>
-                <h1>
+                <v-icon
+                    class="mt-6 ml-2"
+                >
+                    mdi-paw
+                </v-icon>
+                <span
+                    class="text-h4 h4"
+                >
                     Pet Shop
-                </h1>
+                </span>
                 <v-icon
-                    class="mt-6 mx-4"
+                    class="mt-6 mr-2"
                 >
                     mdi-paw
                 </v-icon>
-                <v-icon>
+                <v-icon
+                    class="mb-6"
+                >
                     mdi-paw
                 </v-icon>
             </v-col>
@@ -333,7 +348,7 @@ export default {
         }
     }
     @media (max-width: 446px) {
-        h1, .v-icon {
+        .h4, .v-icon {
             font-size: .8em;
         }
         #inicio {
