@@ -24,118 +24,109 @@
                     >
                         mdi-close
                     </v-icon>
-                </v-col>
-            </v-row>
-            <v-form
-                ref="registerProductForm"
-            >
-            <!--Categoria-->
-                <v-row>
-                    <v-col
-                        cols="11"
+                
+                    <v-form
+                        ref="registerProductForm"
                     >
-                        <p
-                            class="font-weight-black"
+                <!--Categoria-->
+                        <v-col
+                            cols="11"
                         >
-                            {{ titleCategory }}
-                        </p>
-                        <v-text-field
-                            v-model="category"
-                            :rules="[rules.required('categoria')]"
-                            :counter=" 10"
-                            label="Nome da categoria"
-                            required
-                            id="inputCategory"
-                        >
-                        </v-text-field>
-                    </v-col>
-                </v-row>
-                <!--name-->
-                <v-row>
-                    <v-col
-                        cols="11"
-                    >
-                        <p
-                            class="font-weight-black"
-                        >
-                            {{ titleName }}
-                        </p>
+                            <p
+                                class="font-weight-black"
+                            >
+                                {{ titleCategory }}
+                            </p>
                             <v-text-field
-                            v-model="nameProduct"
-                            label="Nome do produto"
-                            :rules="[rules.required('nome')]"
+                                v-model="category"
+                                :rules="[rules.required('categoria')]"
+                                :counter=" 10"
+                                label="Nome da categoria"
+                                required
+                                id="inputCategory"
                             >
                             </v-text-field>
-                    </v-col>
-                </v-row>
-                <!--quantity-->
-                <v-row>
-                    <v-col
-                        cols="11"
-                    >
-                        <p
-                            class="font-weight-black"
+                        </v-col>
+                        <!--name-->
+                        <v-col
+                            cols="11"
                         >
-                            {{ titleQuantity }}
-                        </p>
-                        <v-select
-                            v-model="quantity"
-                            :items="items"
-                            :rules="[v => !!v || 'Quantidade necessária.']"
-                            label="120"
-                            required
-                        >
-                        </v-select>
-                    </v-col>
-                </v-row>
-                <!--Description-->
-                <v-row>
-                    <v-col
-                        cols="11"
-                    >
-                        <p
-                            class="font-weight-black"
-                        >
-                            {{ titleDescription }}
-                        </p>
-                        <v-textarea
-                            bg-color="grey-lighten-2"
-                            color="#F8F25F"
-                            v-model="description"
-                            :rules="[rules.required('descrição')]"
-                            :counter="10"
-                            rows="2"
-                            label="Descrição resumida"
-                            required
-                        >
-                        </v-textarea>
-                    </v-col>
-                </v-row>
-                <!--BTN-->
-                <v-row>
-                    <v-col
-                        cols="11"
-                    >
-                        <v-btn
-                            id="btnCadastrar"
-                            elevation="8"
-                            size="x-large"
-                            color="#28B4FA"
-                            class="w-100 mr-8 mt-3 pa-2"
-                            @click="registerEdit()"
-                        >
-                            <template
-                                v-slot:prepend
+                            <p
+                                class="font-weight-black"
                             >
-                                <v-icon>
-                                    mdi-plus-thick
-                                </v-icon>
-                                {{ btnTitle }}
-                            </template>
-                        </v-btn>
-                    </v-col>
-                </v-row>
-            </v-form>
+                                {{ titleName }}
+                            </p>
+                                <v-text-field
+                                v-model="nameProduct"
+                                label="Nome do produto"
+                                :rules="[rules.required('nome')]"
+                                >
+                                </v-text-field>
+                        </v-col>
+                        <!--quantity-->
+                        <v-col
+                            cols="11"
+                        >
+                            <p
+                                class="font-weight-black"
+                            >
+                                {{ titleQuantity }}
+                            </p>
+                            <v-select
+                                v-model="quantity"
+                                :items="items"
+                                :rules="[v => !!v || 'Quantidade necessária.']"
+                                label="120"
+                                required
+                            >
+                            </v-select>
+                        </v-col>
+                        <!--Description-->
+                        <v-col
+                            cols="11"
+                        >
+                            <p
+                                class="font-weight-black"
+                            >
+                                {{ titleDescription }}
+                            </p>
+                            <v-textarea
+                                bg-color="grey-lighten-2"
+                                color="#F8F25F"
+                                v-model="description"
+                                :rules="[rules.required('descrição')]"
+                                :counter="10"
+                                rows="2"
+                                label="Descrição resumida"
+                                required
+                            >
+                            </v-textarea>
+                        </v-col>
+                        <!--BTN-->
+                        <v-col
+                            cols="11"
+                        >
+                            <v-btn
+                                id="btnCadastrar"
+                                elevation="8"
+                                size="x-large"
+                                color="#28B4FA"
+                                class="w-100 mr-8 mt-3 pa-2"
+                                @click="registerEdit()"
+                            >
+                                <template
+                                    v-slot:prepend
+                                >
+                                    <v-icon>
+                                        mdi-plus-thick
+                                    </v-icon>
+                                    {{ btnTitle }}
+                                </template>
+                            </v-btn>
+                        </v-col>
+                    </v-form>
+                </v-col>
+            </v-row>
         </v-navigation-drawer>
     </v-layout>
 </template>
