@@ -20,7 +20,9 @@
             <v-card-text>
                 <v-container>
                     <v-row>
-                        <v-col cols="12">
+                        <v-col 
+                            cols="12"
+                        >
                             <v-combobox
                                 @mouseenter="verificacaoItems()"
                                 v-model="select"
