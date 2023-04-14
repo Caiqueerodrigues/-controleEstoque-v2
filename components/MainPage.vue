@@ -4,9 +4,11 @@
         id="main"
     >
         <!--header-->
-        <v-row>
+        <v-row 
+            justify="center"
+        >
             <v-col
-                cols="12"
+                cols="9"
                 class="pt-3 pb-5 px-4"
             >
                 <v-icon
@@ -65,10 +67,10 @@
                     mdi-paw
                 </v-icon>
             </v-col>
+            <v-divider
+                :thickness="3"
+            ></v-divider>
         </v-row>
-        <v-divider
-            :thickness="3"
-        ></v-divider>
         <!--Botao Dados-->
         <v-row
             id="inicio"
