@@ -3,10 +3,10 @@
         fluid 
         id="main"
     >
-        <!--header-->
         <v-row 
             justify="center"
         >
+        <!--header-->
             <v-col
                 cols="9"
                 class="pt-3 pb-5 px-4"
@@ -70,12 +70,7 @@
             <v-divider
                 :thickness="3"
             ></v-divider>
-        </v-row>
         <!--Botao Dados-->
-        <v-row
-            id="inicio"
-            class="d-flex justify-center ma-0"
-        >
             <v-col 
                 class="rowDados justify-center d-flex pa-0"
             >
@@ -331,7 +326,7 @@ export default {
 </script>
 <style scoped>
     #main {
-        min-height: 89.7vh;   
+        min-height: 89.7vh;
     }
     .rowDados {
         max-width: 400px;
