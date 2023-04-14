@@ -14,5 +14,8 @@
     "@mdi/font": "^7.2.96",
     "sass": "^1.59.3",
     "vuetify": "^3.1.11"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }
