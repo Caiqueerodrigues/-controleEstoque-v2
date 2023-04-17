@@ -156,17 +156,14 @@ export default {
         btnTitle: '',
         eventBtn: '',
         erro: false,
+        rules: {
+            required: (fieldname) => (v) => !!v|| `${MESSAGES[1010](fieldname).msg}`
+        },
         //categoria
         valid: false,
         category: '',
-        rules: {
-            required: (fieldname) => (v) => !!v || `${MESSAGES[1010](fieldname).msg}`
-        },
         //name
         nameProduct: '',
-        rules: {
-            required: (fieldname) => (v) => !!v || `${MESSAGES[1010](fieldname).msg}`
-        },
         //quantity
         valid: true,
         quantity: '',
