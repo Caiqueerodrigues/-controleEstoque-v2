@@ -10,6 +10,17 @@
         >
             <!--Titulo-->
             <v-row>
+                <v-col
+                    cols="12"
+                >
+                    <v-alert
+                        v-if="erro"
+                        type="error"
+                        title="Produto já existe no estoque"
+                        text= 'Verifique as informações ou altere o nome por favor.'
+                    >
+                    </v-alert>
+                </v-col>
                 <v-col>
                     <h1
                         class="my-4"
@@ -144,6 +155,7 @@ export default {
         titleDescription: '',
         btnTitle: '',
         eventBtn: '',
+        erro: false,
         //categoria
         valid: false,
         category: '',
@@ -181,6 +193,7 @@ export default {
         closeDrawer() {
             this.show = !this.show
             this.$refs.registerProductForm.reset()
+            this.erro = false
         },
 
         editItem() {
@@ -196,7 +209,7 @@ export default {
                 const proximoId = this.estoqueLocal.length
 
                 if (indicePesquisa != -1 || indicePesquisa === undefined) {
-                    alert(`[ERRO] Produto já existente no estoque`)
+                    this.erro = true
                     return
                 }   
                 if(this.category != `` && this.name != ``  && this.quantity != `` && this.description!= `` ) {
