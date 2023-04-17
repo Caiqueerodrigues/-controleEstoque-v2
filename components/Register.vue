@@ -52,7 +52,7 @@
                                 v-model="category"
                                 :rules="[rules.required('categoria')]"
                                 :counter="10"
-                                max="10"
+                                validate-on="blur"
                                 label="Nome da categoria"
                                 required
                                 id="inputCategory"
@@ -70,6 +70,7 @@
                             </p>
                                 <v-text-field
                                 v-model="nameProduct"
+                                validate-on="blur"
                                 label="Nome do produto"
                                 :rules="[rules.required('nome')]"
                                 >
@@ -86,6 +87,7 @@
                             </p>
                             <v-select
                                 v-model="quantity"
+                                validate-on="blur"
                                 :items="items"
                                 :rules="[v => !!v || 'Quantidade necessária.']"
                                 label="120"
@@ -103,6 +105,7 @@
                                 {{ titleDescription }}
                             </p>
                             <v-textarea
+                                validate-on="blur"
                                 bg-color="grey-lighten-2"
                                 color="#F8F25F"
                                 v-model="description"
