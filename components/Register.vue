@@ -51,7 +51,8 @@
                             <v-text-field
                                 v-model="category"
                                 :rules="[rules.required('categoria')]"
-                                :counter=" 10"
+                                :counter="10"
+                                max="10"
                                 label="Nome da categoria"
                                 required
                                 id="inputCategory"
