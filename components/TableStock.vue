@@ -1,125 +1,168 @@
 <template>
-  <v-table
-    fixed-header
-    class="mx-auto mt-3 rounded-xl"
+  <v-row
+    id="row"
   >
-    <thead>
-      <tr>
-        <th 
-          class="text-left cat"
-        >
-          Categoria
-        </th>
-        <th 
-          class="text-left name"
-        >
-          Nome
-        </th>
-        <th 
-          class="text-left qtd"
-        >
-          Quantidade
-        </th>
-        <th
-          class="text-left desc"
-        >
-          Descrição
-        </th>
-        <th
-          class="statusDisplay"
-        >
-          Status
-        </th>
-        <th
-          class="text-left vend"
-        >
-          Vendidos
-        </th>
-        <th
-          class="text-left att"
-        >
-          Atualizada em
-        </th>
-        <th>
-
-        </th>
-        <th>
-
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        v-for="(item, index) in estoqueLocal"
-        :key="index"  v-show="item.show"
+    <v-col
+      cols="12"
+    >
+      <v-table
+        fixed-header
+        class="mx-auto mt-3 rounded-xl"
       >
-        <td
-          class="cat"
-        >
-          {{ item.categoria }}
-        </td>
-        <td
-          class="name"
-        >
-          {{ item.nome }}
-        </td>
-        <td
-          class="qtd"
-        >
-          {{ item.quantidadeKg }} Kg/Un
-        </td>
-        <td
-          class="desc"
-        >
-          {{ item.descricao }}
-        </td>
-        <td
-          class="statusDisplay"
-        >
-          <div
-            v-if="item.quantidadeKg > 0"
-            class="status"
+        <thead>
+          <tr>
+            <th
+              class="text-left cat"
+            >
+              Categoria
+            </th>
+            <th
+              class="text-left name"
+            >
+              Nome
+            </th>
+            <th
+              class="text-left qtd"
+            >
+              Quantidade
+            </th>
+            <th
+              class="text-left desc"
+            >
+              Descrição
+            </th>
+            <th
+              class="statusDisplay"
+            >
+              Status
+            </th>
+            <th
+              class="text-left vend"
+            >
+              Vendidos
+            </th>
+            <th
+              class="text-left att"
+            >
+              Atualizada em
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="(item, index) in estoqueLocal"
+            :key="index"  v-show="item.show"
           >
-            {{ item.status}}
-          </div>
-          <div
-            v-if="item.quantidadeKg == 0"
-            class="status indisp"
-          >
-            {{ item.status}}
-          </div>
-        </td>
-        <td
-          class="pl-12 vend"
+            <td
+              class="cat"
+            >
+              {{ item.categoria }}
+            </td>
+            <td
+              class="name"
+            >
+              {{ item.nome }}
+            </td>
+            <td
+              class="qtd"
+            >
+              {{ item.quantidadeKg }} Kg/Un
+            </td>
+            <td
+              class="desc"
+            >
+              {{ item.descricao }}
+            </td>
+            <td
+              class="statusDisplay"
+            >
+              <div
+                v-if="item.quantidadeKg > 0"
+                class="status"
+              >
+                {{ item.status}}
+              </div>
+              <div
+                v-if="item.quantidadeKg == 0"
+                class="status indisp"
+              >
+                {{ item.status}}
+              </div>
+            </td>
+            <td
+              class="pl-12 vend"
+            >
+              {{ item.vendido }}
+            </td>
+            <td
+              class="att"
+            >
+              {{ item.modificado }}
+            </td>
+            <td>
+              <v-icon
+                color="#00f"
+                title="Editar Item"
+                @click="editarItem(index), showRegister = true"
+              >
+                mdi-pencil
+              </v-icon>
+            </td>
+            <td>
+              <v-icon
+              @click="apagarItem(index)"
+                color="#E13100"
+                title="Excluir Item"
+              >
+                mdi-trash-can-outline
+              </v-icon>
+            </td>
+          </tr>
+        </tbody>
+      </v-table>
+    </v-col>
+      <v-col
+        v-if="alert"
+      >
+        <v-alert
+          v-model="alert"
+          border="start"
+
+          closable
+          close-label="Confirmar Exclusão"
+          color="#860B07"
+          title="Confirmar Exclusão"
         >
-          {{ item.vendido }}
-        </td>
-        <td
-          class="att"
-        >
-          {{ item.modificado }}
-        </td>
-        <td>
-          <v-icon
-            color="#00f"
-            title="Editar Item"
-            @click="editarItem(index), showRegister = true"
+          {{ exclusao }}
+          <v-col
+            id="colBtn"
           >
-            mdi-pencil
-          </v-icon>
-        </td>
-        <td>
-          <v-icon 
-          @click="apagarItem(index)"
-            color="#E13100"
-            title="Excluir Item"
-          >
-            mdi-trash-can-outline
-          </v-icon>
-        </td>
-      </tr>
-    </tbody>
-  </v-table>
+            <v-btn
+              elevation="8"
+              size="large"
+              variant="outlined"
+              class="ma-4"
+              @click="confirm(true, index)"
+            >
+              Excluir
+            </v-btn>
+            <v-btn
+              elevation="8"
+              size="large"
+              variant="outlined"
+              @click="confirm(false)"
+            >
+              Cancelar
+            </v-btn>
+          </v-col>
+        </v-alert>
+    </v-col>
+  </v-row>
+
   <Register 
     @closeRegister="showRegister = $event" 
     :item="item"
@@ -136,19 +179,27 @@ export default {
   data () {
     return {
       itemRemovido: [],
-      item: {}
+      exclusao:[],
+      item: {},
+      alert: false,
+      confirmacao: null,
     }
   },
   methods: {
     apagarItem(index) {
-      let confirmacao = confirm(`Tem certeza que deseja remover o item ${this.estoqueLocal[index].nome.toUpperCase()}?`)
-      if( confirmacao === true) {
+      this.alert = !this.alert
+      this.exclusao = `Tem certeza que deseja remover o item ${this.estoqueLocal[index].nome.toUpperCase()}?`
+    },
+    confirm(value, index) {
+      this.confirmacao = value
+      if(this.confirmacao === true) {
         this.itemRemovido.push(this.estoqueLocal.splice(index,1))
       }
       if(this.dados === true) {
         localStorage.setItem(`itensExcluidos`,JSON.stringify(this.itemRemovido))
         this.salvarLocal()
       }
+      this.alert = !this.alert
     },
     editarItem(index) {
       this.item = this.estoqueLocal[index]
@@ -157,6 +208,24 @@ export default {
 }
 </script>
 <style scoped>
+  #row {
+    position: relative !important;
+  }
+  .v-alert {
+    color: #F8F25F;
+    height: max-content;
+    position: absolute;
+    min-width: 80%;
+    top: 95px;
+    right: auto;
+    bottom: 100px;
+    left: auto;
+  } 
+  #colBtn {
+    width: max-content;
+    float: right;
+    padding: 0;
+  }
   thead > tr > th {
     color: #b98f05 !important;
     background-color: #860B07 !important;
