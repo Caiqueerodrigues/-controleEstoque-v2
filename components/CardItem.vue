@@ -4,7 +4,7 @@
             elevation="12"
             class="px-5 py-4 -xl d-inline-flex capitalize mt-2"
             color="golden5"
-            height="100px"
+            height="300px"
             width="200"
             :id="this.index"
         >
@@ -31,9 +31,16 @@
                         >
                             mdi-plus
                         </v-icon>
-                        <span>
+                        <!-- <span>
                             {{ quantity }}
-                        </span>
+                        </span> -->
+                        <v-text-field
+                            v-model= "quantity"
+                            id="inputQuantity"
+                            autofocus="true"
+                            clearable                      
+                        >
+                        </v-text-field>
                         <v-icon
                             class="mx-1"
                             color="color2"
@@ -49,15 +56,16 @@
 </template>
 <script>
 export default {
-    name: 'CarItem',
+    name: 'CardItem',
     props: ['select','index','item', 'sale'],
     data() {
         return {
-            quantity: 0,
+            quantity: null,
         }
     },
     methods: {
         check() {
+            this.quantity = Number(this.quantity)
             if(this.quantity > 0) {
                 this.quantity--
             } else {
@@ -65,13 +73,15 @@ export default {
             }
         },
         carrinho (sinal) {
+            this.quantity = Number(this.quantity)
             let indicePesquisa = this.sale.findIndex(produto => produto.nome === this.item)
             if (this.quantity > 0 && indicePesquisa === -1) {
                 this.sale.push({
-                id: this.index,
-                nome: this.item,
-                quantidade: this.quantity
+                    id: this.index,
+                    nome: this.item,
+                    quantidade: this.quantity
                 })
+                return
             } else {
                 if(sinal == '+') { 
                     this.sale[indicePesquisa].quantidade ++
@@ -82,15 +92,32 @@ export default {
                         this.sale[indicePesquisa].quantidade = 0
                     }
                 }
+                this.sale[indicePesquisa].quantidade = this.quantity
             }
             // this.$emit('saleCreated', this.sale)
         },
     },
+    watch: {
+        quantity:
+        {
+            handler(newValue) {
+                if(newValue) {
+                    this.carrinho()
+                }
+            },
+            immediate: true
+        }
+    }
 }
 </script>
 <style scoped>
 .sale {
     position: absolute; 
+}
+
+.inputQuantity {
+    width: 10px !important;
+    height: 10px !important;
 }
 .capitalize {
     text-transform: capitalize;
