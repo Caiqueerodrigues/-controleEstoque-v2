@@ -102,7 +102,7 @@ export default {
             items: [],
             quantity: [0],
             sale: [],
-            alert: true,
+            alert: false,
             erro: `Quantidade Informada maior que o estoque Disponível`,
         }
     },
