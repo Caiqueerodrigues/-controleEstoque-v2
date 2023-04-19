@@ -339,7 +339,7 @@ export default {
         text-decoration: none;
         color: #F8F25F;
     }
-    @media (max-width: 446px) {
+    @media (max-width: 340px) {
         .h4, .v-icon {
             font-size: .6em !important;
         }
