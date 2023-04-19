@@ -138,7 +138,7 @@
                                     {{ btnTitle }}
                                 </template>
                             </v-btn>
-                        </v-col>
+                 ,       </v-col>
                     </v-form>
                 </v-col>
             </v-row>
@@ -295,7 +295,10 @@ export default {
             font-size: 1.2em;
         }
         #btnCadastrar {
-            font-size: .7rem;
+            flex-wrap: wrap !important;
+            display: flex;
+            padding: 3px auto !important;
+            font-size:.5rem;
         }
     }
 </style>
