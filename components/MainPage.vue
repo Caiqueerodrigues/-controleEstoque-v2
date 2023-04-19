@@ -342,7 +342,6 @@ export default {
     @media (max-width: 419px) {
         .h4, .v-icon {
             font-size: .6em !important;
-            
         }
         #inicio {
             max-width: 200px !important;
