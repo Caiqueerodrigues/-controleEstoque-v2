@@ -199,6 +199,7 @@
                 cols="12"
                 class="pa-0 text-center"
             >
+            
                 <p 
                     class=" mt-4"
                 >
