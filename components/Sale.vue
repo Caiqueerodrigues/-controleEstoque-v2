@@ -49,6 +49,22 @@
                                 />
                             </v-col>
                         </v-col>
+                        <v-col
+                            id="row"
+                            cols="6"
+                            v-if="alert"
+                        >
+                            <v-alert
+                                v-model="alert"
+                                border="start"
+                                closable
+                                close-label="Confirmar quantidade"
+                                color="#F8F25F"
+                                title="Confirmar Quantidade"
+                            >
+                                {{ erro }}
+                            </v-alert>
+                        </v-col>
                     </v-row>
                 </v-container>
             </v-card-text>
@@ -86,6 +102,8 @@ export default {
             items: [],
             quantity: [0],
             sale: [],
+            alert: true,
+            erro: `Quantidade Informada maior que o estoque Disponível`,
         }
     },
     methods: {
@@ -112,7 +130,8 @@ export default {
                             console.log(this.sale)
                             this.clearForm()
                         } else {
-                            alert(`[ERRO] Quantidade Informada maior que o estoque Disponível`)
+                            // alert(`[ERRO] Quantidade Informada maior que o estoque Disponível`)
+                            this.alert = !this.alert
                         }
                     }
                 })
