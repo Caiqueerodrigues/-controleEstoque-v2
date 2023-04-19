@@ -8,7 +8,10 @@
         >
         <!--header-->
             <v-col
-                cols="6"
+                xs="12"
+                md="10"
+                lg="8"
+                xl="4"
                 class="pt-3 pb-5 px-4"
             >
                 <v-icon
@@ -72,15 +75,15 @@
             ></v-divider>
         <!--Botao Dados-->
             <v-col 
-                cols="2"
+                cols="4"
             >
                 <p>
                     Com Dados Locais
                 </p>
             </v-col>
             <v-col
-                cols="1"
-                class="pt-0"
+                cols="3"
+                class="pt-0 pt"
             >
                 <v-switch
                     color="golden2"
@@ -92,7 +95,7 @@
                 </v-switch>
             </v-col>
             <v-col
-                cols="2"
+                cols="4"
             >
                 <p class="ml-10">
                     Sem Dados Locais
@@ -338,10 +341,13 @@ export default {
     }
     @media (max-width: 446px) {
         .h4, .v-icon {
-            font-size: .8em !important;
+            font-size: .6em !important;
         }
         #inicio {
             max-width: 200px !important;
+        }
+        .pt {
+            padding-top: 10px !important;
         }
         .rowDados {
             width: 90vw !important;
