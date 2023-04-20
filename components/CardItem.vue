@@ -4,50 +4,67 @@
             elevation="12"
             class="px-5 py-4 -xl d-inline-flex capitalize mt-2"
             color="golden5"
-            height="300px"
+            height="200px"
             width="200"
             :id="this.index"
         >
             <v-row>
                 <v-col
                     cols="12"
-                    class="pa-1 d-flex justify-center"
+                    class="pa-3 d-flex justify-center"
                 >
                     <span>
                         {{ item }}
                     </span>
                 </v-col>
+                <!-- <v-col
+                    cols="12"
+                    class="pa-0 d-flex justify-center"
+                >
+                    <span>
+                       Disponível {{  }} Kg
+                    </span>
+                </v-col> -->
                 <v-col
                     cols="12"
                     class="d-flex justify-center"
                 >
                     <v-form
                         ref="formQuantidade"
+                        class="d-inline-flex justify-center"
                     >
-                        <v-icon
-                            class="mx-1"
-                            color="color2"
-                            @click="quantity++, carrinho('+')"
+                        <v-col
+                            cols="3"
                         >
-                            mdi-plus
-                        </v-icon>
-                        <!-- <span>
-                            {{ quantity }}
-                        </span> -->
-                        <v-text-field
-                            v-model= "quantity"
-                            id="inputQuantity"
-                            autofocus="true"
-                            clearable                      
+                            <v-icon
+                                class="mt-4"
+                                color="color2"
+                                @click="quantity++, carrinho('+')"
+                            >
+                                mdi-plus
+                            </v-icon>
+                        </v-col>
+                        <v-col
+                            cols="8"
                         >
-                        </v-text-field>
-                        <v-icon
-                            class="mx-1"
-                            color="color2"
-                            @click="check(), carrinho ('-')"
+                            <v-text-field
+                                v-model= "quantity"
+                                autofocus="true"
+                                clearable
+                            >
+                            </v-text-field>
+                        </v-col>
+                        <v-col
+                            cols="3"
                         >
-                            mdi-minus
-                        </v-icon>
+                            <v-icon
+                                class="mt-4"
+                                color="color2"
+                                @click="check(), carrinho ('-')"
+                            >
+                                mdi-minus
+                            </v-icon>
+                        </v-col>
                     </v-form>
                 </v-col>
             </v-row>
@@ -113,11 +130,6 @@ export default {
 <style scoped>
 .sale {
     position: absolute; 
-}
-
-.inputQuantity {
-    width: 10px !important;
-    height: 10px !important;
 }
 .capitalize {
     text-transform: capitalize;

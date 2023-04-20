@@ -109,7 +109,8 @@ export default {
     methods: {
         constructorItems () {
             this.estoqueLocal.forEach(element => {
-                this.items.push(element.nome)
+                this.items.push( element.nome)
+                
             })
         },
         clearForm() {
@@ -127,10 +128,9 @@ export default {
                             if ( element.quantidadeKg == 0) {
                                 element.status = 'indisponível'
                             }
-                            console.log(this.sale)
+
                             this.clearForm()
                         } else {
-                            // alert(`[ERRO] Quantidade Informada maior que o estoque Disponível`)
                             this.alert = !this.alert
                         }
                     }
