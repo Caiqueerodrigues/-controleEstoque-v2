@@ -51,6 +51,7 @@
                                 v-model= "quantity"
                                 autofocus="true"
                                 clearable
+                                color="#860B07"
                             >
                             </v-text-field>
                         </v-col>
