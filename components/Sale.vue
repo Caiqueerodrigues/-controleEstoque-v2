@@ -44,6 +44,7 @@
                                     :select="select"
                                     :index="index"
                                     :item="item"
+                                    :estoqueLocal="estoqueLocal" 
                                     v-for="(item, index) in select"
                                         :key="index"
                                 />

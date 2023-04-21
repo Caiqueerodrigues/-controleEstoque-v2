@@ -17,14 +17,16 @@
                         {{ item }}
                     </span>
                 </v-col>
-                <!-- <v-col
+                <v-col
                     cols="12"
                     class="pa-0 d-flex justify-center"
                 >
-                    <span>
-                       Disponível {{  }} Kg
+                    <span
+                        class="color1"
+                    >
+                       Disponível {{ itemQuantity }} Kg
                     </span>
-                </v-col> -->
+                </v-col>
                 <v-col
                     cols="12"
                     class="d-flex justify-center"
@@ -75,10 +77,11 @@
 <script>
 export default {
     name: 'CardItem',
-    props: ['select','index','item', 'sale'],
+    props: ['select','index','item', 'sale', 'estoqueLocal'],
     data() {
         return {
             quantity: null,
+            itemQuantity: null,
         }
     },
     methods: {
@@ -106,7 +109,7 @@ export default {
                 } else if (sinal == '-') {
                     if(this.quantity > 0) {
                         this.sale[indicePesquisa].quantidade --
-                    } else {
+                    } else if (this.quantity < 0) {
                         this.sale[indicePesquisa].quantidade = 0
                     }
                 }
@@ -114,6 +117,14 @@ export default {
             }
             // this.$emit('saleCreated', this.sale)
         },
+        checkQuantityItem() {
+            this.estoqueLocal.forEach(element => {
+                if(element.nome === this.item) {
+                    this.itemQuantity = element.quantidadeKg
+                }
+            })
+        },
+        
     },
     watch: {
         quantity:
@@ -124,8 +135,11 @@ export default {
                 }
             },
             immediate: true
+        },
+    },
+    created() {
+            this.checkQuantityItem()
         }
-    }
 }
 </script>
 <style scoped>
@@ -134,5 +148,9 @@ export default {
 }
 .capitalize {
     text-transform: capitalize;
+}
+.color1 {
+    color: #860B07 !important;
+    font-weight: bolder;
 }
 </style>
