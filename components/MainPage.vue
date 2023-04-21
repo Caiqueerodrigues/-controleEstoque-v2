@@ -76,6 +76,7 @@
         <!--Botao Dados-->
             <v-col 
                 cols="4"
+                md="3"
             >
                 <p>
                     Com Dados Locais
@@ -83,7 +84,8 @@
             </v-col>
             <v-col
                 cols="3"
-                class="pt-0 pt"
+                md="2"
+                class="pt-0"
             >
                 <v-switch
                     color="golden2"
@@ -96,6 +98,7 @@
             </v-col>
             <v-col
                 cols="4"
+                md="3"
             >
                 <p class="ml-10">
                     Sem Dados Locais
