@@ -17,7 +17,7 @@
                         {{ item }}
                     </span>
                 </v-col>
-                <v-col
+                <!-- <v-col
                     cols="12"
                     class="pa-0 d-flex justify-center"
                 >
@@ -26,7 +26,7 @@
                     >
                        Disponível {{ itemQuantity }} Kg
                     </span>
-                </v-col>
+                </v-col> -->
                 <v-col
                     cols="12"
                     class="d-flex justify-center"
@@ -52,6 +52,8 @@
                             <v-text-field
                                 v-model= "quantity"
                                 autofocus="true"
+                                persist-hint 
+                                :hint="itemQuantity"
                             >
                             </v-text-field>
                         </v-col>
@@ -94,13 +96,11 @@ export default {
         carrinho (sinal) {
             this.quantity = Number(this.quantity)
             this.estoqueLocal.forEach(element => {
-                // this.item.forEach(itemSale => {
-                    if(this.item === element.nome) {
-                        if(this.quantity > element.quantidadeKg) {
-                            this.quantity= 0
-                        }
+                if(this.item === element.nome) {
+                    if(this.quantity > element.quantidadeKg) {
+                        this.quantity= 0
                     }
-                // })
+                }
             })
             let indicePesquisa = this.sale.findIndex(produto => produto.nome === this.item)
             if (this.quantity > 0 && indicePesquisa === -1) {
@@ -127,7 +127,7 @@ export default {
         checkQuantityItem() {
             this.estoqueLocal.forEach(element => {
                 if(element.nome === this.item) {
-                    this.itemQuantity = element.quantidadeKg
+                    this.itemQuantity = `${element.quantidadeKg}`
                 }
             })
         },
