@@ -47,13 +47,11 @@
                             </v-icon>
                         </v-col>
                         <v-col
-                            cols="8"
+                            cols="6"
                         >
                             <v-text-field
                                 v-model= "quantity"
                                 autofocus="true"
-                                clearable
-                                color="#860B07"
                             >
                             </v-text-field>
                         </v-col>
@@ -95,6 +93,15 @@ export default {
         },
         carrinho (sinal) {
             this.quantity = Number(this.quantity)
+            this.estoqueLocal.forEach(element => {
+                // this.item.forEach(itemSale => {
+                    if(this.item === element.nome) {
+                        if(this.quantity > element.quantidadeKg) {
+                            this.quantity= 0
+                        }
+                    }
+                // })
+            })
             let indicePesquisa = this.sale.findIndex(produto => produto.nome === this.item)
             if (this.quantity > 0 && indicePesquisa === -1) {
                 this.sale.push({
@@ -115,7 +122,7 @@ export default {
                 }
                 this.sale[indicePesquisa].quantidade = this.quantity
             }
-            // this.$emit('saleCreated', this.sale)
+            this.$emit('saleCreated', this.sale)
         },
         checkQuantityItem() {
             this.estoqueLocal.forEach(element => {
@@ -145,6 +152,9 @@ export default {
 <style scoped>
 .sale {
     position: absolute; 
+}
+.v-field--variant-filled, .v-field__overlay {
+    background-color: transparent !important;
 }
 .capitalize {
     text-transform: capitalize;
