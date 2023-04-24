@@ -51,7 +51,6 @@
                         >
                             <v-text-field
                                 v-model= "quantity"
-                                autofocus="true"
                                 persist-hint 
                                 :hint="itemQuantity"
                             >
@@ -162,5 +161,12 @@ export default {
 .color1 {
     color: #860B07 !important;
     font-weight: bolder;
+}
+:deep(.v-field--variant-filled .v-field__overlay) {
+    background-color: transparent;
+}
+:deep(.v-field__outline)  {
+    /* --v-field-border-opacity: 0; */
+    display: none;
 }
 </style>
