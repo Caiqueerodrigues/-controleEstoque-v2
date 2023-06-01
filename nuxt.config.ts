@@ -38,6 +38,11 @@ export default defineNuxtConfig({
         dirs: [
             '~/components',
                 {path: '~/components/', extensions: ['vue'], prefix: 'nuxt', global: true},
+                {path: '~/components/Register/', extensions: ['vue'], prefix: 'nuxt', global: true},
+                {path: '~/components/Sale', extensions: ['vue'], prefix: 'nuxt', global: true},
+                {path: '~/components/Search/', extensions: ['vue'], prefix: 'nuxt', global: true},
+                {path: '~/components/Search/Card/', extensions: ['vue'], prefix: 'nuxt', global: true},
+                {path: '~/components/Table', extensions: ['vue'], prefix: 'nuxt', global: true},
         ]
     }
     

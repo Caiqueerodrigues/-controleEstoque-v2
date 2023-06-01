@@ -10,7 +10,7 @@
             <v-col
                 xs="12"
                 md="10"
-                lg="8"
+                lg="6"
                 xl="4"
                 class="pt-3 pb-5 px-4"
             >
@@ -110,7 +110,11 @@
                 cols="12"
                 md="8"
             >
-                <Search :estoqueLocal="estoqueLocal" :dados="dadosAtuais" :salvarLocal="salvarLocal" />
+                <Search 
+                    :estoqueLocal="estoqueLocal" 
+                    :dados="dadosAtuais" 
+                    :salvarLocal="salvarLocal" 
+                />
             </v-col>
             <!--btn venda-->
             <v-col 

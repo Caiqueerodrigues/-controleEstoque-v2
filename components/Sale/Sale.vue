@@ -38,7 +38,7 @@
                             <v-col
                                 class="d-flex justify-space-evenly flex-wrap"
                             >
-                                <CardItem 
+                                <SaleCardItem 
                                     :sale="sale"
                                     v-show="show"
                                     :select="select"
