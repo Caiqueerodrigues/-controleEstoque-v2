@@ -1,57 +1,97 @@
 <template>
-<v-row
-    id="dateClimate"
-    class="align-center"
->
+<v-row>
     <v-col
-        cols="12"
-        id="rowSpan"
+        cols="11"
+        id="dateClimate"
+        class="align-center pa-0 mt-2"
     >
-        <span
-            v-if=local
-            class="info"
-        >
-            {{ date }}
-        </span>
-        <span
-            id="climate"
-            v-if=previsao
+        <v-col
+            cols="12"
+            :class="{animation: pause}"
         >
             <span
+                v-if=local
                 class="info"
             >
-                {{ forecast[0].temperatura }}
+                {{ date }}
             </span>
             <span
-                class="info"
+                id="climate"
+                v-if=previsao
             >
-                {{ forecast[0].umidade }}
+                <span
+                    class="info"
+                >
+                    {{ forecast[0].temperatura }}
+                </span>
+                <span
+                    class="info"
+                >
+                    {{ forecast[0].umidade }}
+                </span>
+                <span
+                    class="info"
+                >
+                    {{ forecast[0].sensacao }}
+                </span>
+                <span
+                    class="info"
+                >
+                    {{ forecast[0].aparencia }}
+                </span>
             </span>
             <span
-                class="info"
+                v-else
             >
-                {{ forecast[0].sensacao }}
+                <span
+                    class="info"
+                >
+                    {{ dateLocal }}
+                </span>
+                <span
+                    class="info"
+                >
+                    {{ permissao }}
+                </span>
+                <v-btn
+                    id="permissao"
+                    @click=localizacao()
+                >
+                    <template
+                        v-slot:prepend
+                    >
+                        <v-icon>
+                            mdi-arrow-top-left-thin
+                        </v-icon>
+                        Fornecer Permissao
+                    </template>
+                    <template
+                        v-slot:append
+                    >
+                        <v-icon>
+                            mdi-arrow-top-left-thick
+                        </v-icon>
+                    </template>
+                </v-btn>
             </span>
-            <span
-                class="info"
+        </v-col>
+    </v-col>
+    <v-col
+        cols="1"
+        class="pa-0 ma-0 pl-2 mt-2"
+    >
+        <v-btn
+            id="pausar"
+            @click="pausarPrevisao"
+        >
+            <template
+                v-slot:prepend
             >
-                {{ forecast[0].aparencia }}
-            </span>
-        </span>
-        <span
-            v-else
-        >
-        <span
-            class="info"
-        >
-            {{ dateLocal }}
-        </span>
-        <span
-            class="info"
-        >
-            {{ permissao }}
-        </span>
-        </span>
+                <v-icon>
+                    mdi-pause 
+                </v-icon>
+            </template>
+        </v-btn>
     </v-col>
 </v-row>
 </template>
@@ -235,7 +275,8 @@ export default {
             tokenApi: '687b5fa667114db36c9f70a8500d7c74',
             previsao: false,
             forecast:[],
-            permissao:'Forneçao acesso a Localização para ver a previsão do tempo!'
+            permissao:'Forneça o acesso a Localização para ver a previsão do tempo!',
+            pause: true,
         }
     },
     methods: {
@@ -249,7 +290,7 @@ export default {
             })
             this.ano = this.data.getFullYear(),
             this.date = `${this.local}, ${this.dia} de ${this.mes} de ${this.ano}`
-            this.dateLocal = `${this.dia}/${this.mes}/${this.ano}`
+            this.dateLocal = `${this.dia} de ${this.mes} de ${this.ano}`
         },
         localizacao(){
             if(navigator.geolocation) {
@@ -304,6 +345,9 @@ export default {
                 console.log("Não foi possível obter os dados atuais do tempo.", error)
             })
         },
+        pausarPrevisao() {
+            this.pause = !this.pause
+        }
     },
     created() {
         this.cabecalho()        
@@ -317,6 +361,7 @@ export default {
     #dateClimate {
         background: linear-gradient(#460009, #660103, #460009);
         border-radius: 10px;
+        width: 90vw;
         font-weight: bolder;
         overflow: hidden;
     }
@@ -330,8 +375,30 @@ export default {
         -webkit-backdrop-filter: blur( 13.5px );
     }
     
-    #rowSpan {
-        
+    #permissao {
+        background-color: #660103;
+        color: #F8F25F;
+        border: 2px solid #b98f05;
+    }
+    #pausar {
+        background-color: transparent;
+        color: #F8F25F;
+        border: 2px solid #b98f05;
+    }
+    .v-btn--size-default {
+        --v-btn-height: 30px;
+        min-width: 30px;
+        padding:0 8px;
+        margin: 0 auto;
+    }
+    .v-btn__prepend {
+        -webkit-margin-start: 0; 
+        margin-inline-start: 0;
+        -webkit-margin-end: 0; 
+        margin-inline-end: 0;
+    }
+
+    .animation {
         animation: moviment 20s linear infinite;
     }
     @keyframes moviment {
