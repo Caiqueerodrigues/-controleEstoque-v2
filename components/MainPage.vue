@@ -73,6 +73,13 @@
             <v-divider
                 :thickness="3"
             ></v-divider>
+        <!--Data e Previsão do tempo-->
+            <v-col
+                cols="11"
+                class="px-0"
+            >
+                <ClimaClimate />
+            </v-col>
         <!--Botao Dados-->
             <v-col 
                 cols="4"

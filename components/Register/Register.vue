@@ -138,7 +138,7 @@
                                     {{ btnTitle }}
                                 </template>
                             </v-btn>
-                 ,       </v-col>
+                        </v-col>
                     </v-form>
                 </v-col>
             </v-row>
