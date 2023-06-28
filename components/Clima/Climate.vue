@@ -1,5 +1,7 @@
 <template>
-<v-row>
+<v-row
+    id="telaGrande"
+>
     <v-col
         cols="11"
         id="dateClimate"
@@ -40,6 +42,7 @@
                     {{ forecast[0].aparencia }}
                 </span>
             </span>
+            <!--sem localizacao-->
             <span
                 v-else
             >
@@ -92,6 +95,99 @@
                 </v-icon>
             </template>
         </v-btn>
+    </v-col>
+</v-row>
+<!--tela pequena-->
+<v-row
+    id="telaPequena"
+    class="justify-center"
+>
+    <v-col
+        cols="8"
+        md="3"
+        class="pb-0 mx-auto"
+    >
+        <v-btn
+            id="btnPrevisao"
+            @click="dialog = true, localizacao()"
+        >
+            Previsâo do Tempo
+        </v-btn>
+        <v-dialog
+            v-model="dialog"
+            class="m-auto text-center"
+        >
+            <v-card
+                id="dialog"
+            >
+                <v-card-text
+                    v-if="previsao"
+                >
+                    <p
+                        v-if=local
+                        class="info my-3"
+                    >
+                        {{ date }}
+                    </p>
+                    <p
+                        class="info my-3"
+                    >
+                        {{ forecast[0].temperatura }}
+                    </p>
+                    <p
+                        class="info my-3"
+                    >
+                        {{ forecast[0].umidade }}
+                    </p>
+                    <p
+                        class="info my-3"
+                    >
+                        {{ forecast[0].sensacao }}
+                    </p>
+                    <p
+                        class="info my-3"
+                    >
+                        {{ forecast[0].aparencia }}
+                    </p>
+                </v-card-text>
+                <!--sem localizacao-->
+                <v-card-text
+                    v-else
+                >
+                    <span
+                        class="info"
+                    >
+                        {{ dateLocal }}
+                    </span>
+                    <p
+                        class="info my-4"
+                    >
+                        {{ permissao }}
+                    </p>
+                    <v-btn
+                        id="permissao"
+                        @click=localizacao()
+                    >
+                        <template
+                            v-slot:prepend
+                        >
+                            <v-icon>
+                                mdi-arrow-top-left-thin
+                            </v-icon>
+                            Fornecer Permissao
+                        </template>
+                    </v-btn>
+                </v-card-text>
+                <v-card-actions>
+                    <v-btn 
+                        id="fechar"
+                        @click="dialog = false"
+                    >
+                        Fechar
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </v-col>
 </v-row>
 </template>
@@ -275,8 +371,9 @@ export default {
             tokenApi: '687b5fa667114db36c9f70a8500d7c74',
             previsao: false,
             forecast:[],
-            permissao:'Forneça o acesso a Localização para ver a previsão do tempo!',
+            permissao:'Forneça o acesso a Localização para ver a previsão do tempo em tempo real!',
             pause: true,
+            dialog: false,
         }
     },
     methods: {
@@ -354,11 +451,26 @@ export default {
     },
     mounted() {
         this.localizacao()
+    },
+    watch: {
+        tela:
+        {
+            handler(newValue) {
+                console.log(newValue)
+                if(newValue > 767) {
+                    this.telaGrande = true
+                }
+                if(newValue <= 767) {
+                    this.telaGrande = false
+                }
+            },
+            immediate: true
+        }
     }
 }
 </script>
 <style scoped>
-    #dateClimate {
+    #dateClimate, #dialog {
         background: linear-gradient(#460009, #660103, #460009);
         border-radius: 10px;
         width: 90vw;
@@ -366,6 +478,12 @@ export default {
         overflow: hidden;
     }
 
+    #dialog {
+        border: 2px solid #b98f05;
+        color: #b98f05;
+        max-width: 85vw;
+        margin: auto;
+    }
     .info {
         margin:0 5px;
         padding: 10px;
@@ -373,14 +491,16 @@ export default {
         background: rgba(255, 255, 255, 0.264);
         backdrop-filter: blur( 13.5px );
         -webkit-backdrop-filter: blur( 13.5px );
+        color: #F8F25F;
+        box-shadow: 2px 2px 5px #F8F25F;
     }
     
-    #permissao {
+    #permissao, #btnPrevisao {
         background-color: #660103;
         color: #F8F25F;
         border: 2px solid #b98f05;
     }
-    #pausar {
+    #pausar, #fechar {
         background-color: transparent;
         color: #F8F25F;
         border: 2px solid #b98f05;
@@ -397,9 +517,12 @@ export default {
         -webkit-margin-end: 0; 
         margin-inline-end: 0;
     }
-
     .animation {
         animation: moviment 20s linear infinite;
+    }
+
+    #telaGrande {
+        display: none;
     }
     @keyframes moviment {
         0% {
@@ -407,6 +530,16 @@ export default {
         }
         100% {
             margin-left: -100%;
+        }
+    }
+
+    @media (min-width: 1320px) {
+
+        #telaGrande {
+            display: flex;
+        }
+        #telaPequena {
+            display: none;
         }
     }
 </style>
