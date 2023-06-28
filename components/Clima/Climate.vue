@@ -483,6 +483,7 @@ export default {
         color: #b98f05;
         max-width: 85vw;
         margin: auto;
+        overflow-y: scroll;
     }
     .info {
         margin:0 5px;
