@@ -38,6 +38,20 @@
                 {{ forecast[0].aparencia }}
             </span>
         </span>
+        <span
+            v-else
+        >
+        <span
+            class="info"
+        >
+            {{ date }}
+        </span>
+        <span
+            class="info"
+        >
+            {{ permissao }}
+        </span>
+        </span>
     </v-col>
 </v-row>
 </template>
@@ -51,6 +65,7 @@ export default {
             mes: '',
             ano: '',
             date: '',
+            dateLocal:'',
             meses:[
                 {
                     mes: '01',
@@ -220,6 +235,7 @@ export default {
             tokenApi: '687b5fa667114db36c9f70a8500d7c74',
             previsao: false,
             forecast:[],
+            permissao:'Forneçao acesso a Localização para ver a previsão do tempo!'
         }
     },
     methods: {
@@ -233,6 +249,7 @@ export default {
             })
             this.ano = this.data.getFullYear(),
             this.date = `${this.local}, ${this.dia} de ${this.mes} de ${this.ano}`
+            this.dateLocal = `${this.dia}/${this.mes}/${this.ano}`
         },
         localizacao(){
             if(navigator.geolocation) {
