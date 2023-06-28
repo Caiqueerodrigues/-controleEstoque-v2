@@ -44,7 +44,7 @@
         <span
             class="info"
         >
-            {{ date }}
+            {{ dateLocal }}
         </span>
         <span
             class="info"
